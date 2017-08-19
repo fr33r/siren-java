@@ -64,7 +64,22 @@ public class FieldValue<T> {
         if(value == null){
             throw new IllegalStateException("'value' cannot be null as it is required.");
         }
-        //TODO - 2017-08-19 - Perform type checking on T to make sure it is either a number of a string.
+
+        //perform type checking on T to ensure it's either a number or a string.
+        boolean isShort, isInteger, isLong, isDouble, isFloat, isNumber, isString;
+
+        isFloat = value instanceof Float;
+        isDouble = value instanceof Double;
+        isInteger = value instanceof Integer;
+        isLong = value instanceof Long;
+        isShort = value instanceof Short;
+        isNumber = isFloat || isDouble || isInteger || isLong || isShort;
+        isString = value instanceof String;
+
+        if(!isNumber && !isString){
+            throw new IllegalArgumentException("'value' must be either a number or a string.");
+        }
+
         this.value = value;
     }
 
