@@ -16,7 +16,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
     /**
      * Constructs an instance of {@link EmbeddedLinkSubEntity.Builder}.
      */
-    public static class Builder implements siren.Builder<EmbeddedLinkSubEntity{
+    public static class Builder implements siren.Builder<EmbeddedLinkSubEntity>{
 
         private List<String> rel;
         private String href;
