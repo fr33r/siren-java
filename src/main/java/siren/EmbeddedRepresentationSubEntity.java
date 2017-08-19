@@ -11,7 +11,7 @@ import java.util.Map;
  * @author jonfreer
  * @since 8/13/17
  */
-public class EmbeddedRepresentationSubEntity extends Entity{
+public class EmbeddedRepresentationSubEntity extends Entity {
 
     /**
      * Constructs an instance of {@link EmbeddedRepresentationSubEntity.Builder}.
@@ -214,8 +214,6 @@ public class EmbeddedRepresentationSubEntity extends Entity{
                     this.subEntities
             );
         }
-
-
     }
 
     /**
@@ -236,7 +234,7 @@ public class EmbeddedRepresentationSubEntity extends Entity{
      *              to point to the target URI. Entities should include a link `rel` to `self`.
      * @param title Descriptive text about the entity.
      * @param rel Defines the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
-     * @param subEntities
+     * @param subEntities A collection of embedded link entities or embedded representation entities.
      *
      * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
      */
