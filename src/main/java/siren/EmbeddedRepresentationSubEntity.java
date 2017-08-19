@@ -33,20 +33,20 @@ public class EmbeddedRepresentationSubEntity extends Entity {
 
         /**
          * Adds the class provided to the current state of the builder.
-         * @param className Describes the nature of an entity's content based on the current representation.
+         * @param klass Describes the nature of an entity's content based on the current representation.
          *                  Possible values are implementation-dependent and should be documented.
          * @return The builder this method is called on.
          */
-        public Builder klass(String className){
+        public Builder klass(String klass){
             if(this.classes == null) {
                 this.classes = new ArrayList<String>();
             }
-            this.classes.add(className);
+            this.classes.add(klass);
             return this;
         }
 
         /**
-         * Adds the classes provided to the current state of the builder.
+         * Adds the class provided to the current state of the builder.
          * @param classNames Describes the nature of an entity's content based on the current representation.
          *                   Possible values are implementation-dependent and should be documented.
          * @return The builder this method is called on.
@@ -225,7 +225,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
 
     /**
      * Constructs an instance of {@link EmbeddedRepresentationSubEntity}.
-     * @param classes Describes the nature of an entity's content based on the current representation.
+     * @param klass Describes the nature of an entity's content based on the current representation.
      *                Possible values are implementation-dependent and should be documented.
      * @param properties A set of key-value pairs that describe the state of an entity.
      * @param actions A collection of actions; actions show available behaviors an entity exposes.
@@ -239,7 +239,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
      * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
      */
     private EmbeddedRepresentationSubEntity(
-            List<String> classes,
+            List<String> klass,
             Map<String, Object> properties,
             List<Action> actions,
             List<Link> links,
@@ -247,7 +247,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
             List<String> rel,
             List<EntityBase> subEntities
     ){
-        super(classes, properties, actions, links, title, subEntities);
+        super(klass, properties, actions, links, title, subEntities);
         if(rel == null){
             throw new IllegalArgumentException("'rel' cannot be null as it is required.");
         }
