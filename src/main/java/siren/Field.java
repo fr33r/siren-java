@@ -117,7 +117,7 @@ public class Field<T> {
      *             within the set of fields for an action.
      */
     private Field(String name){
-        if(this.name == null){
+        if(name == null){
             throw new IllegalArgumentException("'name' cannot be null as it is required.");
         }
         this.name = name;
