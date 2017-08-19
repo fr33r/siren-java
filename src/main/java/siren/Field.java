@@ -1,6 +1,5 @@
 package siren;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,33 +9,13 @@ import java.util.List;
  */
 public class Field<T> {
 
-    public static final String HIDDEN           = "hidden";
-    public static final String TEXT             = "text";
-    public static final String SEARCH           = "search";
-    public static final String TEL              = "tel";
-    public static final String URL              = "url";
-    public static final String EMAIL            = "email";
-    public static final String PASSWORD         = "password";
-    public static final String DATETIME         = "datetime";
-    public static final String DATE             = "date";
-    public static final String MONTH            = "month";
-    public static final String WEEK             = "week";
-    public static final String TIME             = "time";
-    public static final String DATETIME_LOCAL   = "datetime-local";
-    public static final String NUMBER           = "number";
-    public static final String RANGE            = "range";
-    public static final String COLOR            = "color";
-    public static final String CHECKBOX         = "checkbox";
-    public static final String RADIO            = "radio";
-    public static final String FILE             = "file";
-
     /**
      * Constructs an instance of {@link Field.Builder}.
      */
     public static class Builder<T> implements siren.Builder<Field<T>>{
 
         private String name;
-        private String type;
+        private FieldType type;
         private String title;
         private T value;
 
@@ -69,7 +48,7 @@ public class Field<T> {
          *             the input types specified by HTML5.
          * @return The builder this method is called on.
          */
-        public Builder<T> type(String type){
+        public Builder<T> type(FieldType type){
             this.type = type;
             return this;
         }
@@ -115,7 +94,7 @@ public class Field<T> {
     /**
      * The input type of the field. This is a subset of the input types specified by HTML5.
      */
-    private String type;
+    private FieldType type;
 
     /**
      * Textual annotation of a field. Clients may use this as a label.
@@ -138,35 +117,10 @@ public class Field<T> {
      *             within the set of fields for an action.
      */
     private Field(String name){
-
         if(this.name == null){
             throw new IllegalArgumentException("'name' cannot be null as it is required.");
         }
-
-        this.fieldList = new ArrayList<String>();
-        this.fieldList.add(HIDDEN);
-        this.fieldList.add(TEXT);
-        this.fieldList.add(SEARCH);
-        this.fieldList.add(TEL);
-        this.fieldList.add(URL);
-        this.fieldList.add(EMAIL);
-        this.fieldList.add(PASSWORD);
-        this.fieldList.add(DATETIME);
-        this.fieldList.add(DATE);
-        this.fieldList.add(MONTH);
-        this.fieldList.add(WEEK);
-        this.fieldList.add(TIME);
-        this.fieldList.add(DATETIME_LOCAL);
-        this.fieldList.add(NUMBER);
-        this.fieldList.add(RANGE);
-        this.fieldList.add(COLOR);
-        this.fieldList.add(CHECKBOX);
-        this.fieldList.add(RADIO);
-        this.fieldList.add(FILE);
-
-        if(!this.fieldList.contains(type)){
-            throw new IllegalArgumentException("the value for 'type' is not valid.");
-        }
+        this.name = name;
     }
 
     /**
@@ -178,9 +132,9 @@ public class Field<T> {
      * @param title Textual annotation of a field. Clients may use this as a label.
      * @param value The value assigned to the field.
      */
-    private Field(String name, String type, String title, T value){
+    private Field(String name, FieldType type, String title, T value){
         this(name);
-        this.name = name;
+
         this.title = title;
         this.value = value;
         this.type = type;
@@ -201,7 +155,7 @@ public class Field<T> {
      * @return The input type of the field. This is a subset of
      * the input types specified by HTML5.
      */
-    public String getType(){
+    public FieldType getType(){
         return this.type;
     }
 
