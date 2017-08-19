@@ -6,40 +6,46 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * An Entity is a URI-addressable resource that has properties and actions associated with it.
+ * It may contain sub-entities and navigational links.
  * @author jonfreer
  * @since 8/13/17
  */
 public class Entity extends EntityBase{
 
+    /**
+     * Constructs an instance of {@link Entity.Builder}.
+     */
     public static class Builder implements siren.Builder<Entity>{
 
-        private List<String> classes;
+        private List<String> klass;
         private Map<String, Object> properties;
         private List<Action> actions;
         private List<Link> links;
         private List<EntityBase> subEntities;
         private String title;
 
-        public Builder klass(String className){
-            if(this.classes == null) {
-                this.classes = new ArrayList<String>();
+        /**
+         * Adds the class provided to the current state of the builder.
+         * @param klass Describes the nature of an entity's content based on the current representation.
+         *              Possible values are implementation-dependent and should be documented.
+         * @return The builder this method is called on.
+         */
+        public Builder klass(String klass){
+            if(this.klass == null) {
+                this.klass = new ArrayList<String>();
             }
-            this.classes.add(className);
+            this.klass.add(klass);
             return this;
         }
 
-        public Builder klasses(List<String> classNames){
-            if(this.classes == null) {
-                this.classes = new ArrayList<String>();
-            }
-            this.classes.addAll(classNames);
-            return this;
-        }
-
-        List<String> getKlasses(){
-            return this.classes;
-        }
-
+        /**
+         * Adds the property provided to the current state of the builder.
+         * @param propertyKey The key portion of a key-value pair that describes the state of an entity.
+         * @param propertyValue The value portion of a key-value pair that describes the state of an entity.
+         * @param <T> The type of the value portion of a key-value pair that describes the state of an entity.
+         * @return The builder this method is called on.
+         */
         public <T> Builder property(String propertyKey, T propertyValue){
             if(this.properties == null){
                 this.properties = new HashMap<String, Object>();
@@ -48,18 +54,11 @@ public class Entity extends EntityBase{
             return this;
         }
 
-        public Builder properties(Map<String, Object> properties){
-            if(this.properties == null){
-                this.properties = new HashMap<String, Object>();
-            }
-            this.properties.putAll(properties);
-            return this;
-        }
-
-        Map<String, Object> getProperties(){
-            return this.properties;
-        }
-
+        /**
+         * Adds the action provided to the current state of the builder.
+         * @param action An action showing an available behavior an entity exposes.
+         * @return The builder this method is called on.
+         */
         public Builder action(Action action){
             if(this.actions == null){
                 this.actions = new ArrayList<Action>();
@@ -68,18 +67,14 @@ public class Entity extends EntityBase{
             return this;
         }
 
-        public Builder actions(List<Action> actions){
-            if(this.actions == null){
-                this.actions = new ArrayList<>();
-            }
-            this.actions.addAll(actions);
-            return this;
-        }
-
-        List<Action> getActions(){
-            return this.actions;
-        }
-
+        /**
+         * Adds the link provided to the current state of the builder.
+         * @param link A navigational link, distinct from an entity relationship.
+         *             Link items should contain a `rel` attribute to describe the relationship
+         *             and an `href` attribute to point to the target URI.
+         *             Entities should include a link `rel` to `self`.
+         * @return The builder this method is called on.
+         */
         public Builder link(Link link){
             if(this.links == null){
                 this.links = new ArrayList<Link>();
@@ -88,18 +83,11 @@ public class Entity extends EntityBase{
             return this;
         }
 
-        public Builder links(List<Link> links){
-            if(this.links == null){
-                this.links = new ArrayList<>();
-            }
-            this.links.addAll(links);
-            return this;
-        }
-
-        List<Link> getLinks(){
-            return this.links;
-        }
-
+        /**
+         * Adds the sub-entity provided to the current state of the builder.
+         * @param subEntity A sub-entity represented as an embedded link or an embedded entity representation.
+         * @return The builder this method is called on.
+         */
         public Builder subEntity(EntityBase subEntity){
             if(this.subEntities == null){
                 this.subEntities = new ArrayList<>();
@@ -108,17 +96,14 @@ public class Entity extends EntityBase{
             return this;
         }
 
-        List<EntityBase> getSubEntities(){
-            return this.subEntities;
-        }
-
+        /**
+         * Adds the title provided to the current state of the builder.
+         * @param title Descriptive text about the entity.
+         * @return The builder this method is called on.
+         */
         public Builder title(String title){
             this.title = title;
             return this;
-        }
-
-        String getTitle(){
-            return this.title;
         }
 
         /**
@@ -126,7 +111,7 @@ public class Entity extends EntityBase{
          */
         @Override
         public void clear() {
-            this.classes = null;
+            this.klass = null;
             this.properties = null;
             this.actions = null;
             this.links = null;
@@ -142,25 +127,53 @@ public class Entity extends EntityBase{
          */
         @Override
         public Entity build() {
-            return new Entity(this.classes, this.properties, this.actions, this.links, this.title, this.subEntities);
+            return new Entity(this.klass, this.properties, this.actions, this.links, this.title, this.subEntities);
         }
     }
 
+    /**
+     * A set of key-value pairs that describe the state of the entity.
+     */
     private Map<String, Object> properties;
+
+    /**
+     * A list of actions that show available behaviors the entity exposes.
+     */
     private List<Action> actions;
+
+    /**
+     * A list of items that describe navigational links, distinct from entity relationships.
+     */
     private List<Link> links;
+
+    /**
+     * A list of related sub-entities.
+     */
     private List<EntityBase> subEntities;
 
+    /**
+     * Constructs an instance of {@link Entity}.
+     */
     Entity(){
         super();
-        this.properties = new HashMap<String, Object>();
-        this.actions = new ArrayList<Action>();
-        this.links = new ArrayList<Link>();
-        this.subEntities = new ArrayList<EntityBase>();
     }
 
+    /**
+     * Constructs an instance of {@link Entity}.
+     * @param klass Describes the nature of an entity's content based on the current representation.
+     *              Possible values are implementation-dependent and should be documented.
+     * @param properties A set of key-value pairs that describe the state of an entity.
+     * @param actions A collection of actions; actions show available behaviors an entity exposes.
+     * @param links A collection of items that describe navigational links, distinct from entity relationships.
+     *              Link items should contain a `rel` attribute to describe the relationship and an `href` attribute
+     *              to point to the target URI. Entities should include a link `rel` to `self`.
+     * @param title Descriptive text about the entity.
+     * @param subEntities A collection of embedded link entities or embedded representation entities.
+     *
+     * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
+     */
     Entity(
-        List<String> classes,
+        List<String> klass,
         Map<String,
         Object> properties,
         List<Action> actions,
@@ -168,13 +181,17 @@ public class Entity extends EntityBase{
         String title,
         List<EntityBase> subEntities
     ){
-        super(classes, title);
+        super(klass, title);
         this.properties = properties;
         this.actions = actions;
         this.links = links;
         this.subEntities = subEntities;
     }
 
+    /**
+     * Retrieves the properties.
+     * @return The map of the properties.
+     */
     public Map<String, Object> getProperties(){
         if(this.properties == null) return this.properties;
         Map<String, Object> propertiesCopy = new HashMap<String, Object>();
@@ -182,6 +199,10 @@ public class Entity extends EntityBase{
         return propertiesCopy;
     }
 
+    /**
+     * Retrieves the actions.
+     * @return The list of the actions.
+     */
     public List<Action> getActions(){
         if(this.actions == null) return this.actions;
         List<Action> actionsCopy = new ArrayList<Action>();
@@ -189,6 +210,10 @@ public class Entity extends EntityBase{
         return actionsCopy;
     }
 
+    /**
+     * Retrieves the links.
+     * @return The list of links.
+     */
     public List<Link> getLinks(){
         if(this.links == null) return this.links;
         List<Link> linksCopy = new ArrayList<Link>();
@@ -196,6 +221,10 @@ public class Entity extends EntityBase{
         return linksCopy;
     }
 
+    /**
+     * Retrieves the sub-entities.
+     * @return The list of the sub-entities.
+     */
     public List<EntityBase> getEntities(){
         if(this.subEntities == null) return this.subEntities;
         List<EntityBase> subEntitiesCopy = new ArrayList<EntityBase>();
@@ -203,6 +232,12 @@ public class Entity extends EntityBase{
         return subEntitiesCopy;
     }
 
+    /**
+     * Determines if the instance of {@link Object} provided is
+     * equal to the calling {@link Entity} instance.
+     * @param obj The instance of {@link Object} being examined.
+     * @return {@code true} if the instances are equal; {@code false} otherwise.
+     */
     public boolean equals(Object obj){
         if(obj == null || this.getClass() != obj.getClass()) return false;
 
@@ -216,6 +251,10 @@ public class Entity extends EntityBase{
         return superIsEqual && sameProperties && sameActions && sameLinks;
     }
 
+    /**
+     * Generates hashcode represented as an integer for the calling {@link Entity} instance.
+     * @return The hashcode for the calling {@link Entity} instance.
+     */
     public int hashCode(){
 
         final int prime = 31;
@@ -237,5 +276,4 @@ public class Entity extends EntityBase{
 
         return hashCode;
     }
-
 }
