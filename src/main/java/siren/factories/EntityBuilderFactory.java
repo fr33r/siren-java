@@ -16,7 +16,7 @@ public class EntityBuilderFactory implements BuilderFactory<Entity.Builder> {
 
     /**
      * Constructs an instance of {@link EntityBuilderFactory}.
-     * @return
+     * @return An instance of {@link EntityBuilderFactory}.
      */
     @Override
     public Entity.Builder create() {

@@ -17,7 +17,7 @@ public class EmbeddedRepresentationSubEntityBuilderFactory
 
     /**
      * Constructs an instance of {@link EmbeddedRepresentationSubEntity.Builder}.
-     * @return
+     * @return An instance of {@link EmbeddedRepresentationSubEntity.Builder}.
      */
     @Override
     public EmbeddedRepresentationSubEntity.Builder create() {

@@ -16,7 +16,7 @@ public class LinkBuilderFactory implements BuilderFactory<Link.Builder> {
 
     /**
      * Constructs an instance of {@link LinkBuilderFactory}.
-     * @return
+     * @return An instance of {@link LinkBuilderFactory}.
      */
     @Override
     public Link.Builder create() {
