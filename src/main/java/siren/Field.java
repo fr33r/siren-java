@@ -130,6 +130,23 @@ public class Field<T> {
     private Field(String name, FieldType type, String title, T value){
         this(name);
 
+        //perform type checking on T to ensure it's either a number, a string, or a list (of FieldValue).
+        boolean isShort, isInteger, isLong, isDouble,
+                isFloat, isNumber, isString, isList;
+
+        isFloat = value instanceof Float;
+        isDouble = value instanceof Double;
+        isInteger = value instanceof Integer;
+        isLong = value instanceof Long;
+        isShort = value instanceof Short;
+        isNumber = isFloat || isDouble || isInteger || isLong || isShort;
+        isString = value instanceof String;
+        isList = value instanceof List;
+
+        if(value != null && !isNumber && !isString && !isList){
+            throw new IllegalArgumentException("'value' must be either a number, a string, or a list.");
+        }
+
         this.title = title;
         this.value = value;
         this.type = type;
