@@ -62,7 +62,7 @@ public class FieldValue<T> {
      */
     private FieldValue(T value){
         if(value == null){
-            throw new IllegalStateException("'value' cannot be null as it is required.");
+            throw new IllegalArgumentException("'value' cannot be null as it is required.");
         }
 
         //perform type checking on T to ensure it's either a number or a string.
