@@ -267,6 +267,7 @@ public class Action {
      * @return The class of the action.
      */
     public List<String> getKlass(){
+        if(this.klass == null) return this.klass;
         List<String> klassCopy = new ArrayList<String>();
         klassCopy.addAll(this.klass);
         return klassCopy;
@@ -319,6 +320,7 @@ public class Action {
      * @return The fields associated with the action.
      */
     public List<Field> getFields(){
+        if(this.fields == null) return this.fields;
         List<Field> fieldsCopy = new ArrayList<Field>();
         fieldsCopy.addAll(this.fields);
         return fieldsCopy;

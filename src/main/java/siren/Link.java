@@ -16,7 +16,7 @@ public class Link {
      */
     public static class Builder implements siren.Builder<Link>{
 
-        private List<String> classes;
+        private List<String> klass;
         private String title;
         private String type;
         private List<String> rel;
@@ -63,10 +63,10 @@ public class Link {
          * @return The builder this method is called on.
          */
         public Builder klass(String klass){
-            if(this.classes == null){
-                this.classes = new ArrayList<String>();
+            if(this.klass == null){
+                this.klass = new ArrayList<String>();
             }
-            this.classes.add(klass);
+            this.klass.add(klass);
             return this;
         }
 
@@ -102,7 +102,7 @@ public class Link {
          */
         @Override
         public void clear() {
-            this.classes = null;
+            this.klass = null;
             this.title = null;
             this.type = null;
             this.rel = null;
@@ -142,7 +142,7 @@ public class Link {
      * representation. Possible values are implementation-dependent
      * and should be documented.
      */
-    private List<String> classes;
+    private List<String> klass;
 
     /**
      * Text describing the nature of a link.
@@ -190,6 +190,7 @@ public class Link {
      *     </a>
      */
     public List<String> getRel(){
+        if(this.rel == null) return this.rel;
         List<String> relCopy = new ArrayList<String>();
         relCopy.addAll(this.rel);
         return relCopy;
@@ -201,9 +202,10 @@ public class Link {
      * on the current representation. Possible values are
      * implementation-dependent and should be documented.
      */
-    public List<String> getClasses(){
+    public List<String> getKlass(){
+        if(this.klass == null) return this.klass;
         List<String> classesCopy = new ArrayList<String>();
-        classesCopy.addAll(this.classes);
+        classesCopy.addAll(this.klass);
         return classesCopy;
     }
 

@@ -261,6 +261,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
      * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
      */
     public List<String> getRel(){
+        if(this.rel == null) return this.rel;
         List<String> relCopy = new ArrayList<String>();
         relCopy.addAll(this.rel);
         return relCopy;

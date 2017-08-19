@@ -37,7 +37,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
          */
         public Builder klass(String className){
             if(this.klass == null){
-                this.klass = new ArrayList<>();
+                this.klass = new ArrayList<String>();
             }
             this.klass.add(className);
             return this;
@@ -62,7 +62,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
          */
         public Builder rel(String rel){
             if(this.rel == null){
-                this.rel = new ArrayList<>();
+                this.rel = new ArrayList<String>();
             }
             this.rel.add(rel);
             return this;
@@ -160,6 +160,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
      * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
      */
     public List<String> getRel(){
+        if(this.rel == null) return this.rel;
         List<String> relCopy = new ArrayList<String>();
         relCopy.addAll(this.rel);
         return relCopy;

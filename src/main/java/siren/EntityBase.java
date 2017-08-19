@@ -9,21 +9,22 @@ import java.util.List;
  */
 public abstract class EntityBase {
 
-    private List<String> classes;
+    private List<String> klass;
     private String title;
 
     public EntityBase(){
-        this.classes = new ArrayList<String>();
+        this.klass = new ArrayList<String>();
     }
 
-    public EntityBase(List<String> classes, String title){
-        this.classes = classes;
+    public EntityBase(List<String> klass, String title){
+        this.klass = klass;
         this.title = title;
     }
 
-    public List<String> getClasses(){
+    public List<String> getKlass(){
+        if(this.klass == null) return this.klass;
         List<String> classesCopy = new ArrayList<String>();
-        classesCopy.addAll(this.classes);
+        classesCopy.addAll(this.klass);
         return classesCopy;
     }
 
@@ -36,7 +37,7 @@ public abstract class EntityBase {
 
         EntityBase entity = (EntityBase)obj;
 
-        boolean sameClasses = this.classes.equals(entity.classes);
+        boolean sameClasses = this.klass.equals(entity.klass);
 
         return sameClasses;
     }
@@ -46,8 +47,8 @@ public abstract class EntityBase {
         final int prime = 31;
         int hashCode = 1;
 
-        if(this.classes != null){
-            hashCode *= prime + this.classes.hashCode();
+        if(this.klass != null){
+            hashCode *= prime + this.klass.hashCode();
         }
 
         return hashCode;
