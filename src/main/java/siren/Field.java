@@ -107,11 +107,6 @@ public class Field<T> {
     private T value;
 
     /**
-     * Represents a list of all valid field types.
-     */
-    private List<String> fieldList;
-
-    /**
      * Constructs an instance of {@link Field}.
      * @param name The name describing the control. Field names MUST be unique
      *             within the set of fields for an action.
