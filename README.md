@@ -1,6 +1,7 @@
 # siren-java 
 
 [![Build Status](https://travis-ci.org/freerjm/siren-java.svg?branch=master)](https://travis-ci.org/freerjm/siren-java)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A Java implementation of Siren, which is a hypermedia specification for representing entities.
 
