@@ -47,9 +47,33 @@ Action deleteAction =
 Entity entity = 
     entityBuilder
         .klass("guest")
+        .property("firstName", "Jon")
+        .property("lastName", "Freer")
         .link(selfLink)
         .action(deleteAction)
         .build();
  
-// ... serialize ...
+/*
+ 
+... serialize ...
+ 
+{
+  "class" : [ "guest" ],
+  "properties" : {
+    "firstName" : "Jon",
+    "lastName" : "Freer"
+  },
+  "actions" : [ {
+    "name" : "delete-guest",
+    "title" : "Delete Guest",
+    "method" : "DELETE",
+    "href" : "http://freer.ddns.net/api/guests/1000"
+  } ],
+  "links" : [ {
+    "rel" : [ "self" ],
+    "href" : "http://freer.ddns.net/api/guests/1000",
+  } ],
+}
+ 
+*/
 ```
