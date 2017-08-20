@@ -1,4 +1,7 @@
-# siren-java
+# siren-java 
+
+[![Build Status](https://travis-ci.org/freerjm/siren-java.svg?branch=master)](https://travis-ci.org/freerjm/siren-java)
+
 An Java implementation of Siren, which is a hypermedia specification for representing entities.
 
 ## Overview
