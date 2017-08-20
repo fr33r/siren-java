@@ -19,7 +19,7 @@ in the author's [GitHub repository](https://github.com/kevinswiber/siren), or on
 
 ## Example Usage
 
-```
+```java
 // construct some factories.
 EntityBuilderFactory entityBuilderFactory = new EntityBuilderFactory();
 LinkBuilderFactory linkBuilderFactory = new LinkBuilderFactory();
