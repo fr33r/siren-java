@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/freerjm/siren-java.svg?branch=master)](https://travis-ci.org/freerjm/siren-java)
 
-An Java implementation of Siren, which is a hypermedia specification for representing entities.
+A Java implementation of Siren, which is a hypermedia specification for representing entities.
 
 ## Overview
 
@@ -11,8 +11,8 @@ a hypermedia specification for representing entities.
 
 ## What is Siren?
 
-Siren is a hypermedia specification that provides the ability to express entities, as well various
-other features such as links, actions, sub-entities, and more. The Siren specification can be observed
+Siren is a hypermedia specification that provides the ability to express entities, including various
+features such as links, actions, sub-entities, and more. The Siren specification can be observed
 in the author's [GitHub repository](https://github.com/kevinswiber/siren), or on
 [HyperSchema](http://hyperschema.org/mediatypes/siren).
 
@@ -48,7 +48,7 @@ Entity entity =
     entityBuilder
         .klass("guest")
         .link(selfLink)
-        .action(delete-guest)
+        .action(deleteAction)
         .build();
  
 // ... serialize ...
