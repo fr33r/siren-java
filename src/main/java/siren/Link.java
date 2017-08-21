@@ -12,7 +12,7 @@ import java.util.List;
 public class Link {
 
     /**
-     * A builder for Link instances.
+     * Constructs instances of {@link Link}.
      */
     public static class Builder implements siren.Builder<Link>{
 
@@ -162,7 +162,7 @@ public class Link {
     private String type;
 
     /**
-     * Constructs a link.
+     * Constructs an instance of {@link Link}.
      * @param rel Defines the relationship of the link to its entity,
      *            per Web Linking (RFC5988) and Link Relations.
      * @param href The URI of the linked resource.
