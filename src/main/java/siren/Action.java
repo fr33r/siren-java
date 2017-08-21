@@ -128,50 +128,16 @@ public class Action {
         @Override
         public Action build() {
             // TODO 2017-08-15 - FREER - Do some checking that required state has been set.
-            boolean methodIsNull = this.method == null;
-            boolean typeIsNull = this.type == null;
-
-            if(methodIsNull && typeIsNull){
-                return new Action(
-                        this.name,
-                        this.title,
-                        this.href,
-                        this.fields,
-                        this.klass
-                );
-            }else if(methodIsNull){
-                return new Action(
-                        this.name,
-                        this.title,
-                        null,
-                        this.href,
-                        this.fields,
-                        this.type,
-                        this.klass
-                );
-            }else if(typeIsNull){
-                return new Action(
-                        this.name,
-                        this.title,
-                        this.method,
-                        this.href,
-                        this.fields,
-                        this.klass
-                );
-            }else{
-                return new Action(
-                        this.name,
-                        this.title,
-                        this.method,
-                        this.href,
-                        this.fields,
-                        this.type,
-                        this.klass
-                );
-            }
+            return new Action(
+                    this.name,
+                    this.title,
+                    this.method,
+                    this.href,
+                    this.fields,
+                    this.type,
+                    this.klass
+            );
         }
-
-
     }
 
     private String name;
@@ -188,39 +154,22 @@ public class Action {
      * @param name A string that identifies the action to be performed. Action names
      *             MUST be unique within the set of actions for an entity. The behaviour
      *             of clients when parsing a Siren document that violates this constraint is undefined.
-     * @param title Descriptive text about the action.
-     * @param method An enumerated attribute mapping to a protocol method. For HTTP,
-     *               these values may be GET, PUT, POST, DELETE, or PATCH. As new methods
-     *               are introduced, this list can be extended. If this attribute is omitted,
-     *               GET should be assumed.
      * @param href The URI of the action.
-     * @param fields Represent controls inside of actions.
-     * @param klass Describes the nature of an action based on the current
-     *              representation. Possible values are implementation-dependent
-     *              and should be documented.
      */
-    public Action(String name, String title, HttpMethod method, URI href, List<Field> fields, List<String> klass){
-        this(name, title, method, href, fields, DEFAULT_TYPE, klass);
+    public Action(String name, URI href){
+        if(name == null){
+            throw new IllegalArgumentException("'name' cannot be null as it is required.");
+        }
+
+        if(href == null){
+            throw new IllegalArgumentException("'href' cannot be null as it is required.");
+        }
+        this.name = name;
+        this.href = href;
     }
 
     /**
      * Constructs an instance of {@link Action}.
-     * @param name A string that identifies the action to be performed. Action names
-     *             MUST be unique within the set of actions for an entity. The behaviour
-     *             of clients when parsing a Siren document that violates this constraint is undefined.
-     * @param title Descriptive text about the action.
-     * @param href The URI of the action.
-     * @param fields Represent controls inside of actions.
-     * @param klass Describes the nature of an action based on the current
-     *              representation. Possible values are implementation-dependent
-     *              and should be documented.
-     */
-    public Action(String name, String title, URI href, List<Field> fields, List<String> klass){
-        this(name, title, HttpMethod.GET, href, fields, DEFAULT_TYPE, klass);
-    }
-
-    /**
-     *
      * @param name A string that identifies the action to be performed. Action names
      *             MUST be unique within the set of actions for an entity. The behaviour
      *             of clients when parsing a Siren document that violates this constraint is undefined.
@@ -237,19 +186,16 @@ public class Action {
      *              and should be documented.
      */
     public Action(String name, String title, HttpMethod method, URI href, List<Field> fields, String type, List<String> klass){
-        if (name == null) {
-            throw new IllegalArgumentException("'name' cannot be null as it is required.");
-        }
-        if (href == null) {
-            throw new IllegalArgumentException("'href' cannot be null as it is required.");
-        }
-        this.name   = name;
+        this(name, href);
+
         this.title  = title;
-        this.method = method;
-        this.href   = href;
+        this.method = HttpMethod.GET;
         this.fields = fields;
-        this.type   = type;
-        this.klass = klass;
+        this.type   = DEFAULT_TYPE;
+        this.klass  = klass;
+
+        if(method != null) this.method = method;
+        if(type != null) this.type = type;
     }
 
     /**
