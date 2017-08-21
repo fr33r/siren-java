@@ -38,6 +38,9 @@ public class Link {
          * @return The builder this method is called on.
          */
         public Builder rel(String rel){
+            if(rel == null){
+                throw new IllegalArgumentException("'rel' cannot be null.");
+            }
             if(this.rel == null){
                 this.rel = new ArrayList<String>();
             }
@@ -51,6 +54,9 @@ public class Link {
          * @return The builder this method is called on.
          */
         public Builder href(URI href){
+            if(href == null){
+                throw new IllegalArgumentException("'href' cannot be null.");
+            }
             this.href = href;
             return this;
         }
@@ -63,6 +69,9 @@ public class Link {
          * @return The builder this method is called on.
          */
         public Builder klass(String klass){
+            if(klass == null){
+                throw new IllegalArgumentException("'klass' cannot be null.");
+            }
             if(this.klass == null){
                 this.klass = new ArrayList<String>();
             }
