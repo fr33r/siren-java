@@ -126,7 +126,7 @@ public class Link {
         @Override
         public Link build() {
             // TODO 2017-08-15 - FREER - Do some checking that required state has been set.
-            return new Link(this.rel, this.href);
+            return new Link(this.rel, this.href, this.title, this.type, this.klass);
         }
     }
 
@@ -186,6 +186,25 @@ public class Link {
         }
         this.rel = rel;
         this.href = href.toString();
+    }
+
+    /**
+     * Constructs an instance of {@link Link}.
+     * @param rel Defines the relationship of the link to its entity,
+     *            per Web Linking (RFC5988) and Link Relations.
+     * @param href The URI of the linked resource.
+     * @param title Text describing the nature of a link.
+     * @param type The media type of the linked resource, per Web Linking (RFC5988).
+     *             For the syntax, see RFC2045 (section 5.1), RFC4288 (section 4.2), RFC6838 (section 4.2).
+     * @param klass List of strings describing aspects of the link based on the current representation.
+     *              Possible values are implementation-dependent and should be documented.
+     */
+    private Link(List<String> rel, URI href, String title, String type, List<String> klass){
+        this(rel, href);
+
+        this.title = title;
+        this.type = type;
+        this.klass = klass;
     }
 
     /**
