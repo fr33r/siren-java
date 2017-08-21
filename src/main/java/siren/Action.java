@@ -30,6 +30,9 @@ public class Action {
          * @return The builder this method is called on.
          */
         public Builder name(String name){
+            if(name == null){
+                throw new IllegalArgumentException("'name' cannot be null.");
+            }
             this.name = name;
             return this;
         }
@@ -60,6 +63,9 @@ public class Action {
          * @return The builder this method is called on.
          */
         public Builder href(URI href){
+            if(href == null){
+                throw new IllegalArgumentException("'href' cannot be null.");
+            }
             this.href = href;
             return this;
         }
