@@ -14,7 +14,7 @@ import java.util.Map;
 public class Entity extends EntityBase{
 
     /**
-     * Constructs an instance of {@link Entity.Builder}.
+     * Constructs instances of {@link Entity}.
      */
     public static class Builder implements siren.Builder<Entity>{
 
