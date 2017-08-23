@@ -189,8 +189,7 @@ public class Entity extends EntityBase{
      */
     Entity(
         List<String> klass,
-        Map<String,
-        Object> properties,
+        Map<String, Object> properties,
         List<Action> actions,
         List<Link> links,
         String title,
