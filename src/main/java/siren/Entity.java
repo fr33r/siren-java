@@ -32,6 +32,9 @@ public class Entity extends EntityBase{
          * @return The builder this method is called on.
          */
         public Builder klass(String klass){
+            if(klass == null){
+                throw new IllegalArgumentException("'klass' cannot be null.");
+            }
             if(this.klass == null) {
                 this.klass = new ArrayList<String>();
             }
@@ -47,6 +50,9 @@ public class Entity extends EntityBase{
          * @return The builder this method is called on.
          */
         public <T> Builder property(String propertyKey, T propertyValue){
+            if(propertyKey == null){
+                throw new IllegalArgumentException("'propertyKey' cannot be null.");
+            }
             if(this.properties == null){
                 this.properties = new HashMap<String, Object>();
             }
@@ -60,6 +66,9 @@ public class Entity extends EntityBase{
          * @return The builder this method is called on.
          */
         public Builder action(Action action){
+            if(action == null){
+                throw new IllegalArgumentException("'action' cannot be null.");
+            }
             if(this.actions == null){
                 this.actions = new ArrayList<Action>();
             }
@@ -76,6 +85,9 @@ public class Entity extends EntityBase{
          * @return The builder this method is called on.
          */
         public Builder link(Link link){
+            if(link == null){
+                throw new IllegalArgumentException("'link' cannot be null.");
+            }
             if(this.links == null){
                 this.links = new ArrayList<Link>();
             }
@@ -89,6 +101,9 @@ public class Entity extends EntityBase{
          * @return The builder this method is called on.
          */
         public Builder subEntity(EntityBase subEntity){
+            if(subEntity == null){
+                throw new IllegalArgumentException("'subEntity' cannot be null.");
+            }
             if(this.subEntities == null){
                 this.subEntities = new ArrayList<>();
             }
