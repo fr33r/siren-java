@@ -87,7 +87,7 @@ public class FieldValue<T> {
     /**
      * Indicates whether this value should be considered preselected.
      */
-    private boolean selected;
+    private Boolean selected;
 
     /**
      * Constructs an instance of {@link FieldValue}.
@@ -122,8 +122,9 @@ public class FieldValue<T> {
      * @param value The value for the field.
      * @param selected Indicates whether this value should be considered preselected.
      */
-    private FieldValue(String title, T value, boolean selected){
+    private FieldValue(String title, T value, Boolean selected){
         this(value);
+
         this.title = title;
         this.value = value;
         this.selected = selected;
@@ -149,7 +150,7 @@ public class FieldValue<T> {
      * Retrieves whether this value should be considered preselected.
      * @return Indicates whether this value should be considered preselected.
      */
-    public boolean getSelected(){
+    public Boolean getSelected(){
         return this.selected;
     }
 }
