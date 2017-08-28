@@ -20,6 +20,39 @@ public class FieldValue<T> {
         private Boolean selected;
 
         /**
+         * Adds the value provided to the current state of the builder.
+         * @param value Possible value for the field.
+         * @return The builder this method is called on.
+         */
+        public Builder<T> value(T value){
+            if(value == null){
+                throw new IllegalArgumentException("'value' cannot be null.");
+            }
+            this.value = value;
+            return this;
+        }
+
+        /**
+         * Adds the title provided to the current state of the builder.
+         * @param title Textual description of a field value.
+         * @return The builder this method is called on.
+         */
+        public Builder<T> title(String title){
+            this.title = title;
+            return this;
+        }
+
+        /**
+         * Adds the provided flag indicating whether to be selected to the current state of the builder.
+         * @param selected Indicates whether this field value should be considered preselected by the client.
+         * @return The builder this method is called on.
+         */
+        public Builder<T> selected(Boolean selected){
+            this.selected = selected;
+            return this;
+        }
+
+        /**
          * Clears the state of the builder.
          */
         @Override
