@@ -126,7 +126,6 @@ public class FieldValue<T> {
         this(value);
 
         this.title = title;
-        this.value = value;
         this.selected = selected;
     }
 
