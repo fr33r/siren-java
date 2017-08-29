@@ -72,6 +72,9 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          * @return The builder this method is called on.
          */
         public Builder action(Action action){
+            if(action == null){
+                throw new IllegalArgumentException("'action' cannot be null.");
+            }
             if(this.actions == null){
                 this.actions = new ArrayList<Action>();
             }
@@ -88,24 +91,13 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          * @return The builder this method is called on.
          */
         public Builder link(Link link){
+            if(link == null){
+                throw new IllegalArgumentException("'link' cannot be null.");
+            }
             if(this.links == null){
                 this.links = new ArrayList<Link>();
             }
             this.links.add(link);
-            return this;
-        }
-
-        /**
-         * Adds the links provided to the current state of the builder.
-         * @param links Navigational links, distinct from entity relationships. Link items should contain a `rel`
-         *              attribute to describe the relationship and an `href` attribute to point to the target URI.
-         * @return The builder this method is called on.
-         */
-        public Builder links(List<Link> links){
-            if(this.links == null){
-                this.links = new ArrayList<>();
-            }
-            this.links.addAll(links);
             return this;
         }
 
@@ -115,6 +107,9 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          * @return The builder this method is called on.
          */
         public Builder subEntity(EntityBase subEntity){
+            if(subEntity == null){
+                throw new IllegalArgumentException("'subEntity' cannot be null.");
+            }
             if(this.subEntities == null){
                 this.subEntities = new ArrayList<>();
             }
@@ -140,6 +135,9 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
          */
         public Builder rel(String rel){
+            if(rel == null){
+                throw new IllegalArgumentException("'rel' cannot be null.");
+            }
             if(this.rel == null){
                 this.rel = new ArrayList<String>();
             }
