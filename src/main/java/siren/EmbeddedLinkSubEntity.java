@@ -61,6 +61,9 @@ public class EmbeddedLinkSubEntity extends EntityBase {
          * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
          */
         public Builder rel(String rel){
+            if(rel == null){
+                throw new IllegalArgumentException("'rel' cannot be null.");
+            }
             if(this.rel == null){
                 this.rel = new ArrayList<String>();
             }
