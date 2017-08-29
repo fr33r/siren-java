@@ -168,6 +168,60 @@ public class EmbeddedLinkSubEntity extends EntityBase {
     }
 
     /**
+     * Determines if the instance of {@link Object} provided is
+     * equal to the calling {@link EmbeddedLinkSubEntity} instance.
+     * @param obj The instance of {@link Object} being examined.
+     * @return {@code true} if the instances are equal; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null || this.getClass() != obj.getClass()) return false;
+
+        EmbeddedLinkSubEntity embeddedLinkSubEntity =
+                (EmbeddedLinkSubEntity) obj;
+
+        boolean superIsEqual = super.equals(embeddedLinkSubEntity);
+        boolean relIsEqual =
+                this.rel == null && embeddedLinkSubEntity == null ||
+                this.rel != null && embeddedLinkSubEntity != null &&
+                this.rel.equals(embeddedLinkSubEntity.rel);
+        boolean hrefIsEqual =
+                this.href == null && embeddedLinkSubEntity.href == null ||
+                this.href != null && embeddedLinkSubEntity.href != null &&
+                this.href.equals(embeddedLinkSubEntity.href);
+        boolean typeIsEqual =
+                this.type == null && embeddedLinkSubEntity.type == null ||
+                this.type != null && embeddedLinkSubEntity.type != null &&
+                this.type.equals(embeddedLinkSubEntity.type);
+
+        return superIsEqual && relIsEqual && hrefIsEqual && typeIsEqual;
+    }
+
+    /**
+     * Generates hashcode represented as an integer for the calling {@link EmbeddedRepresentationSubEntity} instance.
+     * @return The hashcode for the calling {@link EmbeddedLinkSubEntity} instance.
+     */
+    @Override
+    public int hashCode(){
+        final int prime = 31;
+        int hashCode = super.hashCode();
+
+        if(this.rel != null){
+            hashCode *= prime + this.rel.hashCode();
+        }
+
+        if(this.href != null){
+            hashCode *= prime + this.href.hashCode();
+        }
+
+        if(this.type != null){
+            hashCode *= prime + this.type.hashCode();
+        }
+
+        return hashCode;
+    }
+
+    /**
      * Retrieves the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
      * @return The relationship of the sub-entity to its parent.
      *
