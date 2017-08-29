@@ -19,7 +19,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
     public static class Builder implements siren.Builder<EmbeddedRepresentationSubEntity>{
 
         private List<String> rel;
-        private List<String> classes;
+        private List<String> klass;
         private Map<String, Object> properties;
         private List<Action> actions;
         private List<Link> links;
@@ -38,24 +38,13 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          * @return The builder this method is called on.
          */
         public Builder klass(String klass){
-            if(this.classes == null) {
-                this.classes = new ArrayList<String>();
+            if(klass == null){
+                throw new IllegalArgumentException("'klass' cannot be null.");
             }
-            this.classes.add(klass);
-            return this;
-        }
-
-        /**
-         * Adds the class provided to the current state of the builder.
-         * @param classNames Describes the nature of an entity's content based on the current representation.
-         *                   Possible values are implementation-dependent and should be documented.
-         * @return The builder this method is called on.
-         */
-        public Builder klasses(List<String> classNames){
-            if(this.classes == null) {
-                this.classes = new ArrayList<String>();
+            if(this.klass == null) {
+                this.klass = new ArrayList<String>();
             }
-            this.classes.addAll(classNames);
+            this.klass.add(klass);
             return this;
         }
 
@@ -186,7 +175,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          */
         @Override
         public void clear() {
-            this.classes = null;
+            this.klass = null;
             this.properties = null;
             this.actions = null;
             this.links = null;
@@ -205,7 +194,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
         public EmbeddedRepresentationSubEntity build() {
             // TODO 2017-08-15 - FREER - Do some checking that required state has been set.
             return new EmbeddedRepresentationSubEntity(
-                    this.classes,
+                    this.klass,
                     this.properties,
                     this.actions,
                     this.links,
@@ -248,6 +237,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
             List<EntityBase> subEntities
     ){
         super(klass, properties, actions, links, title, subEntities);
+
         if(rel == null){
             throw new IllegalArgumentException("'rel' cannot be null as it is required.");
         }
