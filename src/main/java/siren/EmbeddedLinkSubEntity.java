@@ -137,10 +137,10 @@ public class EmbeddedLinkSubEntity extends EntityBase {
      * @param title Descriptive text about the entity.
      * @param rel Defines the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
      * @param href The URI of the linked sub-entity.
-     * @param type Defines the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
      */
-    public EmbeddedLinkSubEntity(List<String> klass, String title, List<String> rel, String href, String type){
+    private EmbeddedLinkSubEntity(List<String> klass, String title, List<String> rel, URI href){
         super(klass, title);
+
         if(rel == null){
             throw new IllegalArgumentException("'rel' cannot be null as it is required.");
         }
@@ -150,6 +150,20 @@ public class EmbeddedLinkSubEntity extends EntityBase {
         }
         this.rel = rel;
         this.href = href;
+    }
+
+    /**
+     * Constructs an instance of {@link EmbeddedLinkSubEntity}.
+     * @param klass Describes the nature of an entity's content based on the current
+     *              representation. Possible values are implementation-dependent and should be documented.
+     * @param title Descriptive text about the entity.
+     * @param rel Defines the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
+     * @param href The URI of the linked sub-entity.
+     * @param type Defines the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
+     */
+    private EmbeddedLinkSubEntity(List<String> klass, String title, List<String> rel, URI href, String type){
+        this(klass, title, rel, href);
+
         this.type = type;
     }
 
