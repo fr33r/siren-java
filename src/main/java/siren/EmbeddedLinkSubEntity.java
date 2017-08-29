@@ -19,7 +19,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
     public static class Builder implements siren.Builder<EmbeddedLinkSubEntity>{
 
         private List<String> rel;
-        private String href;
+        private URI href;
         private String type;
         private List<String> klass;
         private String title;
@@ -85,7 +85,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
          * @return The builder this method is called on.
          */
         public Builder href(URI href) {
-            this.href = href.toString();
+            this.href = href;
             return this;
         }
 
@@ -122,7 +122,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
     /**
      * The URI of the linked sub-entity.
      */
-    private String href;
+    private URI href;
 
     /**
      *  Defines media type of the linked resource, per Web Linking (RFC5988).
@@ -170,7 +170,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
      * Retrieves the URI of the linked sub-entity.
      * @return The URI of the linked sub-entity.
      */
-    public String getHref(){
+    public URI getHref(){
         return this.href;
     }
 
