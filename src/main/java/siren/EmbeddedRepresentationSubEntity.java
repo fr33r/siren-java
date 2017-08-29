@@ -56,23 +56,13 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          * @return The builder this method is called on.
          */
         public <T> Builder property(String propertyKey, T propertyValue){
+            if(propertyKey == null){
+                throw new IllegalArgumentException("'propertyKey' cannot be null.");
+            }
             if(this.properties == null){
                 this.properties = new HashMap<String, Object>();
             }
             this.properties.put(propertyKey, propertyValue);
-            return this;
-        }
-
-        /**
-         * Adds the properties provided to the current state of the builder.
-         * @param properties A set of key-value pairs that describe the state of an entity.
-         * @return The builder this method is called on.
-         */
-        public Builder properties(Map<String, Object> properties){
-            if(this.properties == null){
-                this.properties = new HashMap<String, Object>();
-            }
-            this.properties.putAll(properties);
             return this;
         }
 
@@ -86,19 +76,6 @@ public class EmbeddedRepresentationSubEntity extends Entity {
                 this.actions = new ArrayList<Action>();
             }
             this.actions.add(action);
-            return this;
-        }
-
-        /**
-         * Adds the actions provided to the current state of the builder.
-         * @param actions Actions showing available behaviors an entity exposes.
-         * @return The builder this method is called on.
-         */
-        public Builder actions(List<Action> actions){
-            if(this.actions == null){
-                this.actions = new ArrayList<>();
-            }
-            this.actions.addAll(actions);
             return this;
         }
 
