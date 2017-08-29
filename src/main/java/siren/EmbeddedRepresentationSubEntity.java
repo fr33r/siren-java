@@ -220,6 +220,44 @@ public class EmbeddedRepresentationSubEntity extends Entity {
     }
 
     /**
+     * Determines if the instance of {@link Object} provided is
+     * equal to the calling {@link EmbeddedRepresentationSubEntity} instance.
+     * @param obj The instance of {@link Object} being examined.
+     * @return {@code true} if the instances are equal; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object obj){
+        if(obj == null || this.getClass() != obj.getClass()) return false;
+
+        EmbeddedRepresentationSubEntity embeddedRepSubEntity =
+                (EmbeddedRepresentationSubEntity)obj;
+
+        boolean superIsEqual = super.equals(embeddedRepSubEntity);
+        boolean relIsEqual =
+                this.rel == null && embeddedRepSubEntity == null ||
+                this.rel != null && embeddedRepSubEntity != null &&
+                this.rel.equals(embeddedRepSubEntity.rel);
+
+        return superIsEqual && relIsEqual;
+    }
+
+    /**
+     * Generates hashcode represented as an integer for the calling {@link EmbeddedRepresentationSubEntity} instance.
+     * @return The hashcode for the calling {@link EmbeddedRepresentationSubEntity} instance.
+     */
+    @Override
+    public int hashCode(){
+        final int prime = 31;
+        int hashCode = super.hashCode();
+
+        if(this.rel != null){
+            hashCode *= prime + this.rel.hashCode();
+        }
+
+        return hashCode;
+    }
+
+    /**
      * Retrieves the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
      * @return String representing the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
      *
