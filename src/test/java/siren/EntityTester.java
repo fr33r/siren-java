@@ -7,6 +7,10 @@ import org.junit.Test;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author jonfreer
@@ -75,20 +79,48 @@ public class EntityTester {
     }
 
     @Test
-    public void getProperties_outcomeIs_propertiesRetrieved(){
+    public void getKlass_outcomeIs_classRetrieved(){
 
         //arrange.
-        final String propertyKey = "key";
-        final String propertyValue = "value";
+        final String klass1 = "klass1";
+        final String klass2 = "klass2";
+        List<String> klass = new ArrayList<String>();
+        klass.add(klass1);
+        klass.add(klass2);
 
         //action.
         Entity actualEntity =
                 this.entityBuilder
-                        .property(propertyKey, propertyValue)
+                        .klass(klass1)
+                        .klass(klass2)
                         .build();
 
         //assert.
-        Assert.assertEquals(propertyValue, actualEntity.getProperties().get(propertyKey));
+        Assert.assertEquals(klass, actualEntity.getKlass());
+    }
+
+    @Test
+    public void getProperties_outcomeIs_propertiesRetrieved(){
+
+        //arrange.
+        final String propertyKey1 = "key1";
+        final String propertyValue1 = "value1";
+        final String propertyKey2 = "key2";
+        final String propertyValue2 = "value2";
+        final Map<String, Object> properties =
+                new HashMap<String, Object>();
+        properties.put(propertyKey1, propertyValue1);
+        properties.put(propertyKey2, propertyValue2);
+
+        //action.
+        Entity actualEntity =
+                this.entityBuilder
+                        .property(propertyKey1, propertyValue1)
+                        .property(propertyKey2, propertyValue2)
+                        .build();
+
+        //assert.
+        Assert.assertEquals(properties, actualEntity.getProperties());
     }
 
     @Test
@@ -96,19 +128,31 @@ public class EntityTester {
 
         //arrange.
         final Action.Builder actionBuilder = new Action.Builder();
-        Action action = actionBuilder
-                .name("actionName")
+        Action action1 = actionBuilder
+                .name("actionName1")
                 .href(new URI("http://www.example.com/someaction"))
                 .build();
+
+        actionBuilder.clear();
+
+        Action action2 = actionBuilder
+                .name("actionName2")
+                .href(new URI("http://www.example.com/someotheraction"))
+                .build();
+
+        List<Action> actions = new ArrayList<Action>();
+        actions.add(action1);
+        actions.add(action2);
 
         //action.
         Entity actualEntity =
                 this.entityBuilder
-                        .action(action)
+                        .action(action1)
+                        .action(action2)
                         .build();
 
         //assert.
-        Assert.assertEquals(action, actualEntity.getActions().get(0));
+        Assert.assertEquals(actions, actualEntity.getActions());
     }
 
     @Test
@@ -116,20 +160,33 @@ public class EntityTester {
 
         //arrange.
         final Link.Builder linkBuilder = new Link.Builder();
-        Link link =
+        Link link1 =
                 linkBuilder
-                        .rel("testRel")
-                        .href(new URI("http://www.example.com"))
+                        .rel("testRel1")
+                        .href(new URI("http://www.example.com/something"))
                         .build();
+
+        linkBuilder.clear();
+
+        Link link2 =
+                linkBuilder
+                        .rel("testRel2")
+                        .href(new URI("http://www.example.com/somethingelse"))
+                        .build();
+
+        List<Link> links = new ArrayList<Link>();
+        links.add(link1);
+        links.add(link2);
 
         //action.
         Entity actualEntity =
                 this.entityBuilder
-                        .link(link)
+                        .link(link1)
+                        .link(link2)
                         .build();
 
         //assert.
-        Assert.assertEquals(link, actualEntity.getLinks().get(0));
+        Assert.assertEquals(links, actualEntity.getLinks());
     }
 
     @Test
@@ -138,36 +195,84 @@ public class EntityTester {
         //arrange.
         final EmbeddedLinkSubEntity.Builder subEntityBuilder =
                 new EmbeddedLinkSubEntity.Builder();
-        EmbeddedLinkSubEntity subEntity =
+        EmbeddedLinkSubEntity subEntity1 =
                 subEntityBuilder
-                        .rel("testRel")
-                        .href(new URI("http://www.example.com"))
+                        .rel("testRel1")
+                        .href(new URI("http://www.example.com/something"))
                         .build();
+
+        subEntityBuilder.clear();
+
+        EmbeddedLinkSubEntity subEntity2 =
+                subEntityBuilder
+                        .rel("testRel2")
+                        .href(new URI("http://www.example.com/somethingelse"))
+                        .build();
+
+        List<EntityBase> subEntities = new ArrayList<EntityBase>();
+        subEntities.add(subEntity1);
+        subEntities.add(subEntity2);
 
         //action.
         Entity actualEntity =
                 this.entityBuilder
-                        .subEntity(subEntity)
+                        .subEntity(subEntity1)
+                        .subEntity(subEntity2)
                         .build();
 
         //assert.
-        Assert.assertEquals(subEntity, actualEntity.getEntities().get(0));
+        Assert.assertEquals(subEntities, actualEntity.getEntities());
+    }
+
+    @Test
+    public void equals_instancesAreEqualWithNulls_outcomeIs_true(){
+        //arrange.
+        Entity entity1 = this.entityBuilder.build();
+
+        this.entityBuilder.clear();
+
+        Entity entity2 = this.entityBuilder.build();
+
+        //action.
+        boolean areEqual = entity1.equals(entity2);
+
+        //assert.
+        Assert.assertTrue(areEqual);
     }
 
     @Test
     public void equals_instancesAreEqual_outcomeIs_true() throws URISyntaxException {
 
         //arrange.
+        final Link.Builder linkBuilder = new Link.Builder();
+        final Link link = linkBuilder
+                .href(new URI("http://www.example.com/someaction"))
+                .rel("rel")
+                .title("title")
+                .build();
+        final String key = "key";
+        final String value = "value";
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
                 .name("actionName")
                 .href(new URI("http://www.example.com/someaction"))
                 .build();
+        final EmbeddedLinkSubEntity.Builder embeddedLinkSubEntityBuilder =
+                new EmbeddedLinkSubEntity.Builder();
+        final EmbeddedLinkSubEntity embeddedLinkSubEntity =
+                embeddedLinkSubEntityBuilder
+                    .href(new URI("http://www.example.com/someaction"))
+                    .rel("somerel")
+                    .title("title")
+                    .build();
 
         Entity entity1 = this.entityBuilder
                 .klass("testClass")
                 .title("testTitle")
+                .property(key, value)
+                .link(link)
                 .action(action)
+                .subEntity(embeddedLinkSubEntity)
                 .build();
 
         this.entityBuilder.clear();
@@ -175,7 +280,10 @@ public class EntityTester {
         Entity entity2 = this.entityBuilder
                 .klass("testClass")
                 .title("testTitle")
+                .property(key, value)
+                .link(link)
                 .action(action)
+                .subEntity(embeddedLinkSubEntity)
                 .build();
 
         //action.
@@ -276,26 +384,68 @@ public class EntityTester {
         //arrange.
         final int prime = 31;
         int expectedHashCode = 1;
+        final String key = "key";
+        final String value = "value";
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
                 .name("actionName")
                 .href(new URI("http://www.example.com/someaction"))
                 .build();
+        final Link.Builder linkBuilder = new Link.Builder();
+        final Link link = linkBuilder
+                .href(new URI("http://www.example.com/someotheraction"))
+                .rel("rel")
+                .title("title")
+                .build();
         Entity entity = this.entityBuilder
+                .property(key, value)
                 .klass("testClass")
                 .title("testTitle")
                 .action(action)
+                .link(link)
                 .build();
 
         expectedHashCode *= prime + entity.getTitle().hashCode();
         expectedHashCode *= prime + entity.getKlass().hashCode();
         expectedHashCode *= prime + entity.getActions().hashCode();
+        expectedHashCode *= prime + entity.getProperties().hashCode();
+        expectedHashCode *= prime + entity.getLinks().hashCode();
 
         //action.
         int actualHashCode = entity.hashCode();
 
         //assert.
         Assert.assertEquals(expectedHashCode, actualHashCode);
+    }
+
+    @Test
+    public void hashCode_membersAreNull_outcomeIs_hashCodeGenerated() throws URISyntaxException {
+
+        //arrange.
+        int expectedHashCode = 1;
+
+        Entity entity = this.entityBuilder.build();
+
+        //action.
+        int actualHashCode = entity.hashCode();
+
+        //assert.
+        Assert.assertEquals(expectedHashCode, actualHashCode);
+    }
+
+    @Test
+    public void defaultConstructor_outcomeIs_emptyInstance(){
+
+        //action.
+        Entity entity = new Entity();
+
+        //assert.
+        Assert.assertNull(entity.getKlass());
+        Assert.assertNull(entity.getProperties());
+        Assert.assertNull(entity.getTitle());
+        Assert.assertNull(entity.getActions());
+        Assert.assertNull(entity.getLinks());
+        Assert.assertNull(entity.getEntities());
     }
 
     @After
