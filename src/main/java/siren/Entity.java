@@ -252,6 +252,7 @@ public class Entity extends EntityBase{
      * @param obj The instance of {@link Object} being examined.
      * @return {@code true} if the instances are equal; {@code false} otherwise.
      */
+    @Override
     public boolean equals(Object obj){
         if(obj == null || this.getClass() != obj.getClass()) return false;
 
@@ -282,6 +283,7 @@ public class Entity extends EntityBase{
      * Generates hashcode represented as an integer for the calling {@link Entity} instance.
      * @return The hashcode for the calling {@link Entity} instance.
      */
+    @Override
     public int hashCode(){
 
         final int prime = 31;
