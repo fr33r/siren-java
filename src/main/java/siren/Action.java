@@ -196,17 +196,95 @@ public class Action {
     }
 
     /**
-     * Copy constructor. Construct a new {@link Action} instance based
-     * on the {@link Action} instance provided.
-     * @param action The {@link Action} to copy.
+     * Determines if the instance of {@link Object} provided is
+     * equal to the calling {@link Action} instance.
+     * @param obj The instance of {@link Action} being examined.
+     * @return {@code true} if the instances are equal; {@code false} otherwise.
      */
-    public Action(Action action){
-        this.name   = action.name;
-        this.title  = action.title;
-        this.method = action.method;
-        this.href   = action.href;
-        this.fields = action.fields;
-        this.klass = action.klass;
+    @Override
+    public boolean equals(Object obj){
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+
+        Action action = (Action)obj;
+
+        boolean sameName =
+            this.name == null && action.name == null ||
+            this.name != null && action.name != null &&
+            this.name.equals(action.name);
+
+        boolean sameTitle =
+            this.title == null && action.title == null ||
+            this.title != null && action.title != null &&
+            this.title.equals(action.title);
+
+        boolean sameMethod =
+            this.method == null && action.method == null ||
+            this.method != null && action.method != null &&
+            this.method.equals(action.method);
+
+        boolean sameHref =
+            this.href == null && action.href == null ||
+            this.href != null && action.href != null &&
+            this.href.equals(action.href);
+
+        boolean sameFields =
+            this.fields == null && action.fields == null ||
+            this.fields != null && action.fields != null &&
+            this.fields.equals(action.fields);
+
+        boolean sameType =
+            this.type == null && action.type == null ||
+            this.type != null && action.type != null &&
+            this.type.equals(action.title);
+
+        boolean sameKlass =
+            this.klass == null && action.klass == null ||
+            this.klass != null && action.klass != null &&
+            this.klass.equals(action.klass);
+
+        return sameName && sameTitle && sameMethod && sameHref &&
+            sameFields && sameType && sameKlass;
+    }
+
+    /**
+     * Generates hashcode represented as an integer for the calling {@link Action} instance.
+     * @return The hashcode for the calling {@link Action} instance.
+     */
+    @Override
+    public int hashCode(){
+
+        final int PRIME = 31;
+        int hashCode = 1;
+
+        if (this.name != null) {
+            hashCode *= PRIME + this.name.hashCode();
+        }
+
+        if (this.title != null) {
+            hashCode *= PRIME + this.title.hashCode();
+        }
+
+        if (this.method != null) {
+            hashCode *= PRIME + this.method.hashCode();
+        }
+
+        if (this.href != null) {
+            hashCode *= PRIME + this.href.hashCode();
+        }
+
+        if (this.fields != null) {
+            hashCode *= PRIME + this.fields.hashCode();
+        }
+
+        if (this.type != null) {
+            hashCode *= PRIME + this.type.hashCode();
+        }
+
+        if (this.klass != null) {
+            hashCode *= PRIME + this.klass.hashCode();
+        }
+
+        return hashCode;
     }
 
     /**
