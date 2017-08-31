@@ -153,6 +153,71 @@ public class Field<T> {
     }
 
     /**
+     * Determines if the instance of {@link Object} provided is
+     * equal to the calling {@link Field} instance.
+     * @param obj The instance of {@link Field} being examined.
+     * @return {@code true} if the instances are equal; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object obj){
+
+        if(obj == null || obj.getClass() != this.getClass()) return false;
+
+        Field<T> field = (Field<T>)obj;
+
+        boolean sameName =
+            this.name == null && field.name == null ||
+            this.name != null && field.name != null &&
+            this.name.equals(field.name);
+
+        boolean sameTitle =
+            this.title == null && field.title == null ||
+            this.title != null && field.title != null &&
+            this.title.equals(field.title);
+
+        boolean sameValue =
+            this.value == null && field.value == null ||
+            this.value != null && field.value != null &&
+            this.value.equals(field.value);
+
+        boolean sameType =
+            this.type == null && field.type == null ||
+            this.type != null && field.type != null &&
+            this.type.equals(field.type);
+
+        return sameName && sameTitle && sameValue && sameType;
+    }
+
+    /**
+     * Generates hashcode represented as an integer for the calling {@link Field} instance.
+     * @return The hashcode for the calling {@link Field} instance.
+     */
+    @Override
+    public int hashCode(){
+
+        final int PRIME = 31;
+        int hashCode = 1;
+
+        if(this.name != null){
+            hashCode *= PRIME + this.name.hashCode();
+        }
+
+        if(this.title != null){
+            hashCode *= PRIME + this.title.hashCode();
+        }
+
+        if(this.value != null){
+            hashCode *= PRIME + this.value.hashCode();
+        }
+
+        if(this.type != null){
+            hashCode *= PRIME + this.type.hashCode();
+        }
+
+        return hashCode;
+    }
+
+    /**
      * Retrieves the name describing the control. Field names MUST be unique
      * within the set of fields for an action.
      * @return The name describing the control. Field names MUST be unique
