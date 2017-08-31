@@ -234,8 +234,8 @@ public class EmbeddedRepresentationSubEntity extends Entity {
 
         boolean superIsEqual = super.equals(embeddedRepSubEntity);
         boolean relIsEqual =
-                this.rel == null && embeddedRepSubEntity == null ||
-                this.rel != null && embeddedRepSubEntity != null &&
+                this.rel == null && embeddedRepSubEntity.rel == null ||
+                this.rel != null && embeddedRepSubEntity.rel != null &&
                 this.rel.equals(embeddedRepSubEntity.rel);
 
         return superIsEqual && relIsEqual;

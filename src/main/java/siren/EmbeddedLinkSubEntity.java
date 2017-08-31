@@ -185,8 +185,8 @@ public class EmbeddedLinkSubEntity extends EntityBase {
 
         boolean superIsEqual = super.equals(embeddedLinkSubEntity);
         boolean relIsEqual =
-                this.rel == null && embeddedLinkSubEntity == null ||
-                this.rel != null && embeddedLinkSubEntity != null &&
+                this.rel == null && embeddedLinkSubEntity.rel == null ||
+                this.rel != null && embeddedLinkSubEntity.rel != null &&
                 this.rel.equals(embeddedLinkSubEntity.rel);
         boolean hrefIsEqual =
                 this.href == null && embeddedLinkSubEntity.href == null ||
