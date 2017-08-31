@@ -206,6 +206,80 @@ public class Link {
         this.type = type;
         this.klass = klass;
     }
+    /**
+     * Determines if the instance of {@link Object} provided is
+     * equal to the calling {@link Link} instance.
+     * @param obj The instance of {@link Link} being examined.
+     * @return {@code true} if the instances are equal; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object obj){
+
+        if(obj == null || obj.getClass() != this.getClass()) return false;
+
+        Link link = (Link)obj;
+
+        boolean sameRel =
+            this.rel == null && link.rel == null ||
+            this.rel != null && link.rel != null &&
+            this.rel.equals(link.rel);
+
+        boolean sameTitle =
+            this.title == null && link.title == null ||
+            this.title != null && link.title != null &&
+            this.title.equals(link.title);
+
+        boolean sameHref =
+            this.href == null && link.href == null ||
+            this.href != null && link.href != null &&
+            this.href.equals(link.href);
+
+        boolean sameType =
+            this.type == null && link.type == null ||
+            this.type != null && link.type != null &&
+            this.type.equals(link.type);
+
+        boolean sameKlass =
+            this.klass == null && link.klass == null ||
+            this.klass != null && link.klass != null &&
+            this.klass.equals(link.klass);
+
+        return sameRel && sameTitle && sameHref && sameKlass && sameType;
+    }
+
+    /**
+     * Generates hashcode represented as an integer for the calling {@link Link} instance.
+     * @return The hashcode for the calling {@link Link} instance.
+     */
+    @Override
+    public int hashCode(){
+
+        final int PRIME = 31;
+        int hashCode = 1;
+
+        if(this.rel != null){
+            hashCode *= PRIME + this.rel.hashCode();
+        }
+
+        if(this.title != null){
+            hashCode *= PRIME + this.title.hashCode();
+        }
+
+        if(this.href != null){
+            hashCode *= PRIME + this.href.hashCode();
+        }
+
+        if(this.type != null){
+            hashCode *= PRIME + this.type.hashCode();
+        }
+
+        if(this.klass != null){
+            hashCode *= PRIME + this.klass.hashCode();
+        }
+
+        return hashCode;
+    }
+
 
     /**
      * Retrieves the relationship of the link to its entity.
