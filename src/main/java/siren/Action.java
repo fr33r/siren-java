@@ -86,6 +86,9 @@ public class Action {
          * @return The builder this method is called on.
          */
         public Builder field(Field field){
+            if(field == null){
+                throw new IllegalArgumentException("'field' cannot be null.");
+            }
             if(this.fields == null){
                 this.fields = new ArrayList<Field>();
             }
