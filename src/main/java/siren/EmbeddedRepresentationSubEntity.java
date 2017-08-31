@@ -247,11 +247,11 @@ public class EmbeddedRepresentationSubEntity extends Entity {
      */
     @Override
     public int hashCode(){
-        final int prime = 31;
+        final int PRIME = 31;
         int hashCode = super.hashCode();
 
         if(this.rel != null){
-            hashCode *= prime + this.rel.hashCode();
+            hashCode *= PRIME + this.rel.hashCode();
         }
 
         return hashCode;

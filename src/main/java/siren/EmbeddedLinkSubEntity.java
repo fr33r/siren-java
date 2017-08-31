@@ -206,19 +206,19 @@ public class EmbeddedLinkSubEntity extends EntityBase {
      */
     @Override
     public int hashCode(){
-        final int prime = 31;
+        final int PRIME = 31;
         int hashCode = super.hashCode();
 
         if(this.rel != null){
-            hashCode *= prime + this.rel.hashCode();
+            hashCode *= PRIME + this.rel.hashCode();
         }
 
         if(this.href != null){
-            hashCode *= prime + this.href.hashCode();
+            hashCode *= PRIME + this.href.hashCode();
         }
 
         if(this.type != null){
-            hashCode *= prime + this.type.hashCode();
+            hashCode *= PRIME + this.type.hashCode();
         }
 
         return hashCode;

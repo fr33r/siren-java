@@ -286,19 +286,19 @@ public class Entity extends EntityBase{
     @Override
     public int hashCode(){
 
-        final int prime = 31;
+        final int PRIME = 31;
         int hashCode = super.hashCode();
 
         if(this.properties != null){
-            hashCode *= prime + this.properties.hashCode();
+            hashCode *= PRIME + this.properties.hashCode();
         }
 
         if(this.actions != null){
-            hashCode *= prime + this.actions.hashCode();
+            hashCode *= PRIME + this.actions.hashCode();
         }
 
         if(this.links != null){
-            hashCode *= prime + this.links.hashCode();
+            hashCode *= PRIME + this.links.hashCode();
         }
 
         return hashCode;

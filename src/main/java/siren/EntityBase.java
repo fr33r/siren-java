@@ -86,15 +86,15 @@ public abstract class EntityBase {
      */
     public int hashCode(){
 
-        final int prime = 31;
+        final int PRIME = 31;
         int hashCode = 1;
 
         if(this.klass != null){
-            hashCode *= prime + this.klass.hashCode();
+            hashCode *= PRIME + this.klass.hashCode();
         }
 
         if(this.title != null){
-            hashCode *= prime + this.title.hashCode();
+            hashCode *= PRIME + this.title.hashCode();
         }
 
         return hashCode;
