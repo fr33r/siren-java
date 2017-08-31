@@ -153,7 +153,7 @@ public class Action {
      *             of clients when parsing a Siren document that violates this constraint is undefined.
      * @param href The URI of the action.
      */
-    public Action(String name, URI href){
+    private Action(String name, URI href){
         if(name == null){
             throw new IllegalArgumentException("'name' cannot be null as it is required.");
         }
@@ -182,7 +182,7 @@ public class Action {
      *              representation. Possible values are implementation-dependent
      *              and should be documented.
      */
-    public Action(String name, String title, HttpMethod method, URI href, List<Field> fields, String type, List<String> klass){
+    private Action(String name, String title, HttpMethod method, URI href, List<Field> fields, String type, List<String> klass){
         this(name, href);
 
         this.title  = title;
