@@ -130,6 +130,62 @@ public class FieldValue<T> {
     }
 
     /**
+     * Determines if the instance of {@link Object} provided is
+     * equal to the calling {@link FieldValue} instance.
+     * @param obj The instance of {@link FieldValue} being examined.
+     * @return {@code true} if the instances are equal; {@code false} otherwise.
+     */
+    @Override
+    public boolean equals(Object obj){
+
+        if(obj == null || obj.getClass() != this.getClass()) return false;
+
+        FieldValue<T> fieldValue = (FieldValue<T>)obj;
+
+        boolean sameTitle =
+            this.title == null && fieldValue.title == null ||
+            this.title != null && fieldValue.title != null &&
+            this.title.equals(fieldValue.title);
+
+        boolean sameValue =
+            this.value == null && fieldValue.value == null ||
+            this.value != null && fieldValue.value != null &&
+            this.value.equals(fieldValue.value);
+
+        boolean sameSelected =
+            this.selected == null && fieldValue.selected == null ||
+            this.selected != null && fieldValue.selected != null &&
+            this.selected.equals(fieldValue.selected);
+
+        return sameTitle && sameValue && sameSelected;
+    }
+
+    /**
+     * Generates hashcode represented as an integer for the calling {@link FieldValue} instance.
+     * @return The hashcode for the calling {@link FieldValue} instance.
+     */
+    @Override
+    public int hashCode(){
+
+        final int PRIME = 31;
+        int hashCode = 1;
+
+        if(this.title != null){
+            hashCode *= PRIME + this.title.hashCode();
+        }
+
+        if(this.value != null){
+            hashCode *= PRIME + this.value.hashCode();
+        }
+
+        if(this.selected != null){
+            hashCode *= PRIME + this.selected.hashCode();
+        }
+
+        return hashCode;
+    }
+
+    /**
      * Retrieves the textual description of a field value.
      * @return The textual description of a field value.
      */
