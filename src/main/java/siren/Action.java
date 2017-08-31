@@ -326,7 +326,7 @@ public class Action {
     }
 
     /**
-     * Retrieves the href of the action. The herf is the URI of the action.
+     * Retrieves the href of the action. The href is the URI of the action.
      * @return The href of the action.
      */
     public String getHref(){
