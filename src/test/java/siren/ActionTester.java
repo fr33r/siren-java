@@ -272,6 +272,249 @@ public class ActionTester {
         Assert.assertNull(actualFields);
     }
 
+    @Test
+    public void equals_instancesAreEqualWithNulls_outcomeIs_true() throws URISyntaxException {
+        //arrange.
+        final String name = "nameTest";
+        final URI href = new URI("http://www.example/something");
+        Action action1 = this.actionBuilder.name(name).href(href).build();
+
+        this.actionBuilder.clear();
+
+        Action action2 = this.actionBuilder.name(name).href(href).build();
+
+        //action.
+        boolean areEqual = action1.equals(action2);
+
+        //assert.
+        Assert.assertTrue(areEqual);
+    }
+
+    @Test
+    public void equals_instancesAreEqual_outcomeIs_true() throws URISyntaxException {
+
+        //arrange.
+        final String name = "nameTest";
+        final URI href = new URI("http://www.example/something");
+        final String klass = "klassTest";
+        final String title = "titleTest";
+        final HttpMethod httpMethod = HttpMethod.DELETE;
+        final String fieldValue = "valueTest";
+
+        final Field.Builder<String> fieldBuilder =
+            new Field.Builder<String>();
+        final Field<String> field =
+            fieldBuilder.name(name).value(fieldValue).build();
+
+        Action action1 = this.actionBuilder
+            .klass(klass)
+            .title(title)
+            .href(href)
+            .field(field)
+            .method(httpMethod)
+            .name(name)
+            .build();
+
+        this.actionBuilder.clear();
+
+        Action action2 = this.actionBuilder
+            .klass(klass)
+            .title(title)
+            .href(href)
+            .field(field)
+            .method(httpMethod)
+            .name(name)
+            .build();
+
+        //action.
+        boolean areEqual = action1.equals(action2);
+
+        //assert.
+        Assert.assertTrue(areEqual);
+    }
+
+    @Test
+    public void equals_instanceIsNull_outcomeIs_false() throws URISyntaxException {
+
+        //arrange.
+        final String name = "nameTest";
+        final URI href = new URI("http://www.example/something");
+        final String klass = "klassTest";
+        final String title = "titleTest";
+        final HttpMethod httpMethod = HttpMethod.DELETE;
+        final String fieldValue = "valueTest";
+
+        final Field.Builder<String> fieldBuilder =
+            new Field.Builder<String>();
+        final Field<String> field =
+            fieldBuilder.name(name).value(fieldValue).build();
+
+        Action action1 = this.actionBuilder
+            .klass(klass)
+            .title(title)
+            .href(href)
+            .field(field)
+            .method(httpMethod)
+            .name(name)
+            .build();
+
+        this.actionBuilder.clear();
+
+        Action action2 = null;
+
+        //action.
+        boolean areEqual = action1.equals(action2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void equals_mismatchingClass_outcomeIs_false() throws URISyntaxException {
+
+        //arrange.
+        final String name = "nameTest";
+        final URI href = new URI("http://www.example/something");
+        final String klass = "klassTest";
+        final String title = "titleTest";
+        final HttpMethod httpMethod = HttpMethod.DELETE;
+        final String fieldValue = "valueTest";
+
+        final Field.Builder<String> fieldBuilder =
+            new Field.Builder<String>();
+        final Field<String> field =
+            fieldBuilder.name(name).value(fieldValue).build();
+
+        Action action1 = this.actionBuilder
+            .klass(klass)
+            .title(title)
+            .href(href)
+            .field(field)
+            .method(httpMethod)
+            .name(name)
+            .build();
+
+        this.actionBuilder.clear();
+
+        Object action2 = new Object();
+
+        //action.
+        boolean areEqual = action1.equals(action2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void equals_instancesAreNotEqual_outcomeIs_false() throws URISyntaxException {
+
+        //arrange.
+        final String name = "nameTest";
+        final URI href = new URI("http://www.example/something");
+        final String klass = "klassTest";
+        final String otherKlass = "otherKlassTest";
+        final String title = "titleTest";
+        final HttpMethod httpMethod = HttpMethod.DELETE;
+        final String fieldValue = "valueTest";
+
+        final Field.Builder<String> fieldBuilder =
+            new Field.Builder<String>();
+        final Field<String> field =
+            fieldBuilder.name(name).value(fieldValue).build();
+
+        Action action1 = this.actionBuilder
+            .klass(klass)
+            .title(title)
+            .href(href)
+            .field(field)
+            .method(httpMethod)
+            .name(name)
+            .build();
+
+        this.actionBuilder.clear();
+
+        Action action2 = this.actionBuilder
+            .klass(otherKlass) //class is different.
+            .title(title)
+            .href(href)
+            .field(field)
+            .method(httpMethod)
+            .name(name)
+            .build();
+
+        //action.
+        boolean areEqual = action1.equals(action2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void hashCode_outcomeIs_hashCodeGenerated() throws URISyntaxException {
+
+        //arrange.
+        final int PRIME = 31;
+        int expectedHashCode = 1;
+
+        final String name = "nameTest";
+        final URI href = new URI("http://www.example/something");
+        final String klass = "klassTest";
+        final String title = "titleTest";
+        final HttpMethod httpMethod = HttpMethod.DELETE;
+        final String fieldValue = "valueTest";
+
+        final Field.Builder<String> fieldBuilder =
+            new Field.Builder<String>();
+        final Field<String> field =
+            fieldBuilder.name(name).value(fieldValue).build();
+
+        Action action = this.actionBuilder
+            .klass(klass)
+            .title(title)
+            .href(href)
+            .field(field)
+            .method(httpMethod)
+            .name(name)
+            .build();
+
+        expectedHashCode *= PRIME + action.getName().hashCode();
+        expectedHashCode *= PRIME + action.getTitle().hashCode();
+        expectedHashCode *= PRIME + action.getMethod().hashCode();
+        expectedHashCode *= PRIME + href.hashCode();
+        expectedHashCode *= PRIME + action.getFields().hashCode();
+        expectedHashCode *= PRIME + action.getKlass().hashCode();
+        expectedHashCode *= PRIME + action.getType().hashCode();
+
+        //action.
+        int actualHashCode = action.hashCode();
+
+        //assert.
+        Assert.assertEquals(expectedHashCode, actualHashCode);
+    }
+
+    @Test
+    public void hashCode_membersAreNull_outcomeIs_hashCodeGenerated() throws URISyntaxException {
+
+        //arrange.
+        final int PRIME = 31;
+        int expectedHashCode = 1;
+        final String name = "nameTest";
+        final URI href = new URI("http://www.example/something");
+
+        Action action = this.actionBuilder.name(name).href(href).build();
+
+        expectedHashCode *= PRIME + action.getName().hashCode();
+        expectedHashCode *= PRIME + href.hashCode();
+        expectedHashCode *= PRIME + action.getMethod().hashCode();
+        expectedHashCode *= PRIME + action.getType().hashCode();
+
+        //action.
+        int actualHashCode = action.hashCode();
+
+        //assert.
+        Assert.assertEquals(expectedHashCode, actualHashCode);
+    }
+
     @After
     public void tearDown(){
         this.actionBuilder = null;
