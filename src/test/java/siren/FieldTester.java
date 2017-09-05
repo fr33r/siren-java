@@ -192,6 +192,272 @@ public class FieldTester {
         Assert.assertEquals(valueList, actualListOfFieldValues);
     }
 
+    @Test
+    public void equals_instancesAreEqualWithNulls_outcomeIs_true(){
+
+        //arrange.
+        final String name = "testName";
+
+        Field<List<FieldValue<String>>> field1 = this.fieldBuilder
+            .name(name)
+            .build();
+
+        this.fieldBuilder.clear();
+
+        Field<List<FieldValue<String>>> field2 = this.fieldBuilder
+            .name(name)
+            .build();
+
+        //action.
+        boolean areEqual = field1.equals(field2);
+
+        //assert.
+        Assert.assertTrue(areEqual);
+    }
+
+    @Test
+    public void equals_instancesAreEqual_outcomeIs_true(){
+
+        //arrange.
+        final String value = "testValue";
+        final Boolean isSelected = true;
+        final String name = "testName";
+        final String title = "testTitle";
+        final FieldType type = FieldType.HIDDEN;
+
+        FieldValue.Builder<String> fieldValueBuilder =
+            new FieldValue.Builder<String>();
+
+        FieldValue<String> fieldValue =
+            fieldValueBuilder
+                .value(value)
+                .selected(isSelected)
+                .title(title)
+                .build();
+
+        List<FieldValue<String>> fieldValueList =
+            new ArrayList<FieldValue<String>>();
+        fieldValueList.add(fieldValue);
+
+        Field<List<FieldValue<String>>> field1 = this.fieldBuilder
+            .title(title)
+            .value(fieldValueList)
+            .name(name)
+            .type(type)
+            .build();
+
+        this.fieldBuilder.clear();
+
+        Field<List<FieldValue<String>>> field2 = this.fieldBuilder
+            .title(title)
+            .value(fieldValueList)
+            .name(name)
+            .type(type)
+            .build();
+
+        //action.
+        boolean areEqual = field1.equals(field2);
+
+        //assert.
+        Assert.assertTrue(areEqual);
+    }
+
+    @Test
+    public void equals_instanceIsNull_outcomeIs_false(){
+
+        //arrange.
+        final String value = "testValue";
+        final Boolean isSelected = true;
+        final String name = "testName";
+        final String title = "testTitle";
+        final FieldType type = FieldType.HIDDEN;
+
+        FieldValue.Builder<String> fieldValueBuilder =
+            new FieldValue.Builder<String>();
+
+        FieldValue<String> fieldValue =
+            fieldValueBuilder
+                .value(value)
+                .selected(isSelected)
+                .title(title)
+                .build();
+
+        List<FieldValue<String>> fieldValueList =
+            new ArrayList<FieldValue<String>>();
+        fieldValueList.add(fieldValue);
+
+        Field<List<FieldValue<String>>> field1 = this.fieldBuilder
+            .title(title)
+            .value(fieldValueList)
+            .name(name)
+            .type(type)
+            .build();
+
+        Field<List<FieldValue<String>>> field2 = null;
+
+        //action.
+        boolean areEqual = field1.equals(field2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void equals_mismatchingClass_outcomeIs_false(){
+
+        //arrange.
+        final String value = "testValue";
+        final Boolean isSelected = true;
+        final String name = "testName";
+        final String title = "testTitle";
+        final FieldType type = FieldType.HIDDEN;
+
+        FieldValue.Builder<String> fieldValueBuilder =
+            new FieldValue.Builder<String>();
+
+        FieldValue<String> fieldValue =
+            fieldValueBuilder
+                .value(value)
+                .selected(isSelected)
+                .title(title)
+                .build();
+
+        List<FieldValue<String>> fieldValueList =
+            new ArrayList<FieldValue<String>>();
+        fieldValueList.add(fieldValue);
+
+        Field<List<FieldValue<String>>> field1 = this.fieldBuilder
+            .title(title)
+            .value(fieldValueList)
+            .name(name)
+            .type(type)
+            .build();
+
+        this.fieldBuilder.clear();
+
+        Object field2 = new Object();
+
+        //action.
+        boolean areEqual = field1.equals(field2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void equals_instancesAreNotEqual_outcomeIs_false(){
+
+        //arrange.
+        final String value = "testValue";
+        final Boolean isSelected = true;
+        final String name = "testName";
+        final String otherName = "otherTestName";
+        final String title = "testTitle";
+        final FieldType type = FieldType.HIDDEN;
+
+        FieldValue.Builder<String> fieldValueBuilder =
+            new FieldValue.Builder<String>();
+
+        FieldValue<String> fieldValue =
+            fieldValueBuilder
+                .value(value)
+                .selected(isSelected)
+                .title(title)
+                .build();
+
+        List<FieldValue<String>> fieldValueList =
+            new ArrayList<FieldValue<String>>();
+        fieldValueList.add(fieldValue);
+
+        Field<List<FieldValue<String>>> field1 = this.fieldBuilder
+            .title(title)
+            .value(fieldValueList)
+            .name(name)
+            .type(type)
+            .build();
+
+        this.fieldBuilder.clear();
+
+        Field<List<FieldValue<String>>> field2 = this.fieldBuilder
+            .title(title)
+            .value(fieldValueList)
+            .name(otherName) //names are different.
+            .type(type)
+            .build();
+
+        //action.
+        boolean areEqual = field1.equals(field2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void hashCode_outcomeIs_hashCodeGenerated(){
+
+        //arrange.
+        final int PRIME = 31;
+        int expectedHashCode = 1;
+        final String value = "testValue";
+        final Boolean isSelected = true;
+        final String name = "testName";
+        final String title = "testTitle";
+        final FieldType type = FieldType.HIDDEN;
+
+        FieldValue.Builder<String> fieldValueBuilder =
+            new FieldValue.Builder<String>();
+
+        FieldValue<String> fieldValue =
+            fieldValueBuilder
+                .value(value)
+                .selected(isSelected)
+                .title(title)
+                .build();
+
+        List<FieldValue<String>> fieldValueList =
+            new ArrayList<FieldValue<String>>();
+        fieldValueList.add(fieldValue);
+
+        Field<List<FieldValue<String>>> field = this.fieldBuilder
+            .title(title)
+            .value(fieldValueList)
+            .name(name)
+            .type(type)
+            .build();
+
+        expectedHashCode *= PRIME + field.getTitle().hashCode();
+        expectedHashCode *= PRIME + field.getType().hashCode();
+        expectedHashCode *= PRIME + field.getName().hashCode();
+        expectedHashCode *= PRIME + field.getValue().hashCode();
+
+        //action.
+        int actualHashCode = field.hashCode();
+
+        //assert.
+        Assert.assertEquals(expectedHashCode, actualHashCode);
+    }
+
+    @Test
+    public void hashCode_membersAreNull_outcomeIs_hashCodeGenerated(){
+
+        //arrange.
+        final int PRIME = 31;
+        int expectedHashCode = 1;
+        final String name = "testName";
+
+        Field<List<FieldValue<String>>> field = this.fieldBuilder
+            .name(name)
+            .build();
+
+        expectedHashCode *= PRIME + field.getName().hashCode();
+
+        //action.
+        int actualHashCode = field.hashCode();
+
+        //assert.
+        Assert.assertEquals(expectedHashCode, actualHashCode);
+    }
+
     @After
     public void tearDown(){
         this.fieldBuilder = null;
