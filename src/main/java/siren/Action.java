@@ -235,7 +235,7 @@ public class Action {
         boolean sameType =
             this.type == null && action.type == null ||
             this.type != null && action.type != null &&
-            this.type.equals(action.title);
+            this.type.equals(action.type);
 
         boolean sameKlass =
             this.klass == null && action.klass == null ||
