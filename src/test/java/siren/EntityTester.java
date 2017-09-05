@@ -382,7 +382,7 @@ public class EntityTester {
     public void hashCode_outcomeIs_hashCodeGenerated() throws URISyntaxException {
 
         //arrange.
-        final int prime = 31;
+        final int PRIME = 31;
         int expectedHashCode = 1;
         final String key = "key";
         final String value = "value";
@@ -405,11 +405,11 @@ public class EntityTester {
                 .link(link)
                 .build();
 
-        expectedHashCode *= prime + entity.getTitle().hashCode();
-        expectedHashCode *= prime + entity.getKlass().hashCode();
-        expectedHashCode *= prime + entity.getActions().hashCode();
-        expectedHashCode *= prime + entity.getProperties().hashCode();
-        expectedHashCode *= prime + entity.getLinks().hashCode();
+        expectedHashCode *= PRIME + entity.getTitle().hashCode();
+        expectedHashCode *= PRIME + entity.getKlass().hashCode();
+        expectedHashCode *= PRIME + entity.getActions().hashCode();
+        expectedHashCode *= PRIME + entity.getProperties().hashCode();
+        expectedHashCode *= PRIME + entity.getLinks().hashCode();
 
         //action.
         int actualHashCode = entity.hashCode();

@@ -294,7 +294,7 @@ public class EmbeddedRepresentationSubEntityTester {
     public void hashCode_outcomeIs_hashCodeGenerated() throws URISyntaxException {
 
         //arrange.
-        final int prime = 31;
+        final int PRIME = 31;
         int expectedHashCode = 1;
         final String rel = "testRel";
         final Action.Builder actionBuilder = new Action.Builder();
@@ -310,10 +310,10 @@ public class EmbeddedRepresentationSubEntityTester {
                     .action(action)
                     .build();
 
-        expectedHashCode *= prime + embeddedRepresentationSubEntity.getTitle().hashCode();
-        expectedHashCode *= prime + embeddedRepresentationSubEntity.getKlass().hashCode();
-        expectedHashCode *= prime + embeddedRepresentationSubEntity.getActions().hashCode();
-        expectedHashCode *= prime + embeddedRepresentationSubEntity.getRel().hashCode();
+        expectedHashCode *= PRIME + embeddedRepresentationSubEntity.getTitle().hashCode();
+        expectedHashCode *= PRIME + embeddedRepresentationSubEntity.getKlass().hashCode();
+        expectedHashCode *= PRIME + embeddedRepresentationSubEntity.getActions().hashCode();
+        expectedHashCode *= PRIME + embeddedRepresentationSubEntity.getRel().hashCode();
 
         //action.
         int actualHashCode = embeddedRepresentationSubEntity.hashCode();

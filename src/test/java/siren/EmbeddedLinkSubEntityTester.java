@@ -218,7 +218,7 @@ public class EmbeddedLinkSubEntityTester {
     public void hashCode_outcomeIs_hashCodeGenerated() throws URISyntaxException {
 
         //arrange.
-        final int prime = 31;
+        final int PRIME = 31;
         int expectedHashCode = 1;
         final URI href = new URI("https://www.example.com/");
         final String rel = "testRel";
@@ -230,10 +230,10 @@ public class EmbeddedLinkSubEntityTester {
                 .rel(rel)
                 .build();
 
-        expectedHashCode *= prime + entity.getTitle().hashCode();
-        expectedHashCode *= prime + entity.getKlass().hashCode();
-        expectedHashCode *= prime + entity.getRel().hashCode();
-        expectedHashCode *= prime + entity.getHref().hashCode();
+        expectedHashCode *= PRIME + entity.getTitle().hashCode();
+        expectedHashCode *= PRIME + entity.getKlass().hashCode();
+        expectedHashCode *= PRIME + entity.getRel().hashCode();
+        expectedHashCode *= PRIME + entity.getHref().hashCode();
 
         //action.
         int actualHashCode = entity.hashCode();
