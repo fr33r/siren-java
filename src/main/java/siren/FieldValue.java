@@ -70,7 +70,7 @@ public class FieldValue<T> {
          */
         @Override
         public FieldValue<T> build() {
-            return new FieldValue<T>(this.title, this.value, this.selected);
+            return new FieldValue<>(this.title, this.value, this.selected);
         }
     }
 

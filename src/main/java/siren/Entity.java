@@ -36,7 +36,7 @@ public class Entity extends EntityBase{
                 throw new IllegalArgumentException("'klass' cannot be null.");
             }
             if(this.klass == null) {
-                this.klass = new ArrayList<String>();
+                this.klass = new ArrayList<>();
             }
             this.klass.add(klass);
             return this;
@@ -54,7 +54,7 @@ public class Entity extends EntityBase{
                 throw new IllegalArgumentException("'propertyKey' cannot be null.");
             }
             if(this.properties == null){
-                this.properties = new HashMap<String, Object>();
+                this.properties = new HashMap<>();
             }
             this.properties.put(propertyKey, propertyValue);
             return this;
@@ -70,7 +70,7 @@ public class Entity extends EntityBase{
                 throw new IllegalArgumentException("'action' cannot be null.");
             }
             if(this.actions == null){
-                this.actions = new ArrayList<Action>();
+                this.actions = new ArrayList<>();
             }
             this.actions.add(action);
             return this;
@@ -89,7 +89,7 @@ public class Entity extends EntityBase{
                 throw new IllegalArgumentException("'link' cannot be null.");
             }
             if(this.links == null){
-                this.links = new ArrayList<Link>();
+                this.links = new ArrayList<>();
             }
             this.links.add(link);
             return this;
@@ -208,7 +208,7 @@ public class Entity extends EntityBase{
      */
     public Map<String, Object> getProperties(){
         if(this.properties == null) return this.properties;
-        Map<String, Object> propertiesCopy = new HashMap<String, Object>();
+        Map<String, Object> propertiesCopy = new HashMap<>();
         propertiesCopy.putAll(this.properties);
         return propertiesCopy;
     }
@@ -219,7 +219,7 @@ public class Entity extends EntityBase{
      */
     public List<Action> getActions(){
         if(this.actions == null) return this.actions;
-        List<Action> actionsCopy = new ArrayList<Action>();
+        List<Action> actionsCopy = new ArrayList<>();
         actionsCopy.addAll(this.actions);
         return actionsCopy;
     }
@@ -230,7 +230,7 @@ public class Entity extends EntityBase{
      */
     public List<Link> getLinks(){
         if(this.links == null) return this.links;
-        List<Link> linksCopy = new ArrayList<Link>();
+        List<Link> linksCopy = new ArrayList<>();
         linksCopy.addAll(this.links);
         return linksCopy;
     }
@@ -241,7 +241,7 @@ public class Entity extends EntityBase{
      */
     public List<EntityBase> getEntities(){
         if(this.subEntities == null) return this.subEntities;
-        List<EntityBase> subEntitiesCopy = new ArrayList<EntityBase>();
+        List<EntityBase> subEntitiesCopy = new ArrayList<>();
         subEntitiesCopy.addAll(this.subEntities);
         return subEntitiesCopy;
     }

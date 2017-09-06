@@ -37,7 +37,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
          */
         public Builder klass(String className){
             if(this.klass == null){
-                this.klass = new ArrayList<String>();
+                this.klass = new ArrayList<>();
             }
             this.klass.add(className);
             return this;
@@ -65,7 +65,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
                 throw new IllegalArgumentException("'rel' cannot be null.");
             }
             if(this.rel == null){
-                this.rel = new ArrayList<String>();
+                this.rel = new ArrayList<>();
             }
             this.rel.add(rel);
             return this;
@@ -222,7 +222,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
      */
     public List<String> getRel(){
         if(this.rel == null) return this.rel;
-        List<String> relCopy = new ArrayList<String>();
+        List<String> relCopy = new ArrayList<>();
         relCopy.addAll(this.rel);
         return relCopy;
     }

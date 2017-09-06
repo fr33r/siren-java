@@ -43,7 +43,7 @@ public abstract class EntityBase {
      */
     public List<String> getKlass(){
         if(this.klass == null) return this.klass;
-        List<String> classesCopy = new ArrayList<String>();
+        List<String> classesCopy = new ArrayList<>();
         classesCopy.addAll(this.klass);
         return classesCopy;
     }

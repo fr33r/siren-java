@@ -82,7 +82,7 @@ public class Field<T> {
          */
         @Override
         public Field<T> build() {
-            return new Field<T>(this.name, this.type, this.title, this.value);
+            return new Field<>(this.name, this.type, this.title, this.value);
         }
     }
 

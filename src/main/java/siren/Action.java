@@ -84,7 +84,7 @@ public class Action {
                 throw new IllegalArgumentException("'field' cannot be null.");
             }
             if(this.fields == null){
-                this.fields = new ArrayList<Field>();
+                this.fields = new ArrayList<>();
             }
             this.fields.add(field);
             return this;
@@ -97,7 +97,7 @@ public class Action {
          */
         public Builder klass(String klass){
             if(this.klass == null){
-                this.klass = new ArrayList<String>();
+                this.klass = new ArrayList<>();
             }
             this.klass.add(klass);
             return this;
@@ -283,7 +283,7 @@ public class Action {
      */
     public List<String> getKlass(){
         if(this.klass == null) return this.klass;
-        List<String> klassCopy = new ArrayList<String>();
+        List<String> klassCopy = new ArrayList<>();
         klassCopy.addAll(this.klass);
         return klassCopy;
     }
@@ -336,7 +336,7 @@ public class Action {
      */
     public List<Field> getFields(){
         if(this.fields == null) return this.fields;
-        List<Field> fieldsCopy = new ArrayList<Field>();
+        List<Field> fieldsCopy = new ArrayList<>();
         fieldsCopy.addAll(this.fields);
         return fieldsCopy;
     }

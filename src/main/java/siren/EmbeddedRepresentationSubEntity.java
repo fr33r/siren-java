@@ -42,7 +42,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
                 throw new IllegalArgumentException("'klass' cannot be null.");
             }
             if(this.klass == null) {
-                this.klass = new ArrayList<String>();
+                this.klass = new ArrayList<>();
             }
             this.klass.add(klass);
             return this;
@@ -60,7 +60,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
                 throw new IllegalArgumentException("'propertyKey' cannot be null.");
             }
             if(this.properties == null){
-                this.properties = new HashMap<String, Object>();
+                this.properties = new HashMap<>();
             }
             this.properties.put(propertyKey, propertyValue);
             return this;
@@ -76,7 +76,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
                 throw new IllegalArgumentException("'action' cannot be null.");
             }
             if(this.actions == null){
-                this.actions = new ArrayList<Action>();
+                this.actions = new ArrayList<>();
             }
             this.actions.add(action);
             return this;
@@ -95,7 +95,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
                 throw new IllegalArgumentException("'link' cannot be null.");
             }
             if(this.links == null){
-                this.links = new ArrayList<Link>();
+                this.links = new ArrayList<>();
             }
             this.links.add(link);
             return this;
@@ -139,7 +139,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
                 throw new IllegalArgumentException("'rel' cannot be null.");
             }
             if(this.rel == null){
-                this.rel = new ArrayList<String>();
+                this.rel = new ArrayList<>();
             }
             this.rel.add(rel);
             return this;
@@ -261,7 +261,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
      */
     public List<String> getRel(){
         if(this.rel == null) return this.rel;
-        List<String> relCopy = new ArrayList<String>();
+        List<String> relCopy = new ArrayList<>();
         relCopy.addAll(this.rel);
         return relCopy;
     }

@@ -42,7 +42,7 @@ public class Link {
                 throw new IllegalArgumentException("'rel' cannot be null.");
             }
             if(this.rel == null){
-                this.rel = new ArrayList<String>();
+                this.rel = new ArrayList<>();
             }
             this.rel.add(rel);
             return this;
@@ -73,7 +73,7 @@ public class Link {
                 throw new IllegalArgumentException("'klass' cannot be null.");
             }
             if(this.klass == null){
-                this.klass = new ArrayList<String>();
+                this.klass = new ArrayList<>();
             }
             this.klass.add(klass);
             return this;
@@ -282,7 +282,7 @@ public class Link {
      */
     public List<String> getRel(){
         if(this.rel == null) return this.rel;
-        List<String> relCopy = new ArrayList<String>();
+        List<String> relCopy = new ArrayList<>();
         relCopy.addAll(this.rel);
         return relCopy;
     }
@@ -295,7 +295,7 @@ public class Link {
      */
     public List<String> getKlass(){
         if(this.klass == null) return this.klass;
-        List<String> classesCopy = new ArrayList<String>();
+        List<String> classesCopy = new ArrayList<>();
         classesCopy.addAll(this.klass);
         return classesCopy;
     }
