@@ -39,10 +39,11 @@ public class EmbeddedLinkSubEntityTester {
     public void href_nullHref_outcomeIs_IllegalArgumentException() {
 
         //arrange.
+        final String rel = "testRel";
         final URI href = null;
 
         //action.
-        this.embeddedLinkSubEntityBuilder.href(href).build();
+        this.embeddedLinkSubEntityBuilder.rel(rel).href(href).build();
     }
 
     @Test
@@ -110,21 +111,29 @@ public class EmbeddedLinkSubEntityTester {
         //arrange.
         final URI href = new URI("https://www.example.com/");
         final String rel = "testRel";
+        final String anotherRel = "anotherRel";
+        final String type = "testType";
 
-        EmbeddedLinkSubEntity entity1 = this.embeddedLinkSubEntityBuilder
+        EmbeddedLinkSubEntity entity1 =
+            this.embeddedLinkSubEntityBuilder
                 .klass("testClass")
                 .title("testTitle")
                 .href(href)
                 .rel(rel)
+                .rel(anotherRel)
+                .type(type)
                 .build();
 
         this.embeddedLinkSubEntityBuilder.clear();
 
-        EmbeddedLinkSubEntity entity2 = this.embeddedLinkSubEntityBuilder
+        EmbeddedLinkSubEntity entity2 =
+            this.embeddedLinkSubEntityBuilder
                 .klass("testClass")
                 .title("testTitle")
                 .href(href)
                 .rel(rel)
+                .rel(anotherRel)
+                .type(type)
                 .build();
 
         //action.
@@ -222,18 +231,22 @@ public class EmbeddedLinkSubEntityTester {
         int expectedHashCode = 1;
         final URI href = new URI("https://www.example.com/");
         final String rel = "testRel";
+        final String type = "testType";
 
-        EmbeddedLinkSubEntity entity = this.embeddedLinkSubEntityBuilder
+        EmbeddedLinkSubEntity entity =
+            this.embeddedLinkSubEntityBuilder
                 .klass("testClass")
                 .title("testTitle")
                 .href(href)
                 .rel(rel)
+                .type(type)
                 .build();
 
         expectedHashCode *= PRIME + entity.getTitle().hashCode();
         expectedHashCode *= PRIME + entity.getKlass().hashCode();
         expectedHashCode *= PRIME + entity.getRel().hashCode();
         expectedHashCode *= PRIME + entity.getHref().hashCode();
+        expectedHashCode *= PRIME + entity.getType().hashCode();
 
         //action.
         int actualHashCode = entity.hashCode();
