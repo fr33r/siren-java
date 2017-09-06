@@ -233,10 +233,10 @@ public class EmbeddedRepresentationSubEntity extends Entity {
         EmbeddedRepresentationSubEntity embeddedRepSubEntity =
                 (EmbeddedRepresentationSubEntity)obj;
 
-        boolean superIsEqual = super.equals(embeddedRepSubEntity);
-        boolean relIsEqual = rel.equals(embeddedRepSubEntity.rel);
+        boolean sameSuper = super.equals(embeddedRepSubEntity);
+        boolean sameRel = rel.equals(embeddedRepSubEntity.rel);
 
-        return superIsEqual && relIsEqual;
+        return sameSuper && sameRel;
     }
 
     /**

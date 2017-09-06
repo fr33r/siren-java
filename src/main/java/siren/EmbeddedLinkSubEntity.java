@@ -184,15 +184,15 @@ public class EmbeddedLinkSubEntity extends EntityBase {
         EmbeddedLinkSubEntity embeddedLinkSubEntity =
                 (EmbeddedLinkSubEntity) obj;
 
-        boolean superIsEqual = super.equals(embeddedLinkSubEntity);
-        boolean relIsEqual = this.rel.equals(embeddedLinkSubEntity.rel);
-        boolean hrefIsEqual = this.href.equals(embeddedLinkSubEntity.href);
-        boolean typeIsEqual =
+        boolean sameSuper = super.equals(embeddedLinkSubEntity);
+        boolean sameRel = this.rel.equals(embeddedLinkSubEntity.rel);
+        boolean sameHref = this.href.equals(embeddedLinkSubEntity.href);
+        boolean sameType =
                 this.type == null && embeddedLinkSubEntity.type == null ||
                 this.type != null && embeddedLinkSubEntity.type != null &&
                 this.type.equals(embeddedLinkSubEntity.type);
 
-        return superIsEqual && relIsEqual && hrefIsEqual && typeIsEqual;
+        return sameSuper && sameRel && sameHref && sameType;
     }
 
     /**

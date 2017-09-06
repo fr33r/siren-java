@@ -258,7 +258,7 @@ public class Entity extends EntityBase{
 
         Entity entity = (Entity)obj;
 
-        boolean superIsEqual = super.equals(entity);
+        boolean sameSuper = super.equals(entity);
         boolean sameProperties =
                 this.properties == null && entity.properties == null ||
                 this.properties != null && entity.properties != null &&
@@ -276,7 +276,7 @@ public class Entity extends EntityBase{
                 this.subEntities != null && entity.subEntities != null &&
                 this.subEntities.equals(entity.subEntities);
 
-        return superIsEqual && sameProperties && sameActions && sameLinks && sameSubEntities;
+        return sameSuper && sameProperties && sameActions && sameLinks && sameSubEntities;
     }
 
     /**
