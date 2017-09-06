@@ -5,6 +5,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author jonfreer
  * @since 8/27/17
@@ -139,6 +142,186 @@ public class FieldValueTester {
 
         //assert.
         Assert.assertNull(actualSelected);
+    }
+
+    @Test
+    public void equals_instancesAreEqualWithNulls_outcomeIs_true(){
+
+        //arrange.
+        final String value = "testValue";
+
+        FieldValue<String> fieldValue1 = this.fieldValueBuilder
+            .value(value)
+            .build();
+
+        this.fieldValueBuilder.clear();
+
+        FieldValue<String> fieldValue2 = this.fieldValueBuilder
+            .value(value)
+            .build();
+
+        //action.
+        boolean areEqual = fieldValue1.equals(fieldValue2);
+
+        //assert.
+        Assert.assertTrue(areEqual);
+    }
+
+    @Test
+    public void equals_instancesAreEqual_outcomeIs_true(){
+
+        //arrange.
+        final String value = "testValue";
+        final String title = "testTitle";
+        final Boolean selected = true;
+
+        FieldValue<String> fieldValue1 = this.fieldValueBuilder
+            .value(value)
+            .title(title)
+            .selected(selected)
+            .build();
+
+        this.fieldValueBuilder.clear();
+
+        FieldValue<String> fieldValue2 = this.fieldValueBuilder
+            .value(value)
+            .title(title)
+            .selected(selected)
+            .build();
+
+        //action.
+        boolean areEqual = fieldValue1.equals(fieldValue2);
+
+        //assert.
+        Assert.assertTrue(areEqual);
+    }
+
+    @Test
+    public void equals_instanceIsNull_outcomeIs_false(){
+
+        //arrange.
+        final String value = "testValue";
+        final String title = "testTitle";
+        final Boolean selected = true;
+
+        FieldValue<String> fieldValue1 = this.fieldValueBuilder
+            .value(value)
+            .title(title)
+            .selected(selected)
+            .build();
+
+        this.fieldValueBuilder.clear();
+
+        FieldValue<String> fieldValue2 = null;
+
+        //action.
+        boolean areEqual = fieldValue1.equals(fieldValue2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void equals_mismatchingClass_outcomeIs_false(){
+
+        //arrange.
+        final String value = "testValue";
+        final String title = "testTitle";
+        final Boolean selected = true;
+
+        FieldValue<String> fieldValue1 = this.fieldValueBuilder
+            .value(value)
+            .title(title)
+            .selected(selected)
+            .build();
+
+        this.fieldValueBuilder.clear();
+
+        Object fieldValue2 = new Object();
+
+        //action.
+        boolean areEqual = fieldValue1.equals(fieldValue2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void equals_instancesAreNotEqual_outcomeIs_false(){
+
+        //arrange.
+        final String value = "testValue";
+        final String title = "testTitle";
+        final String otherTitle = "otherTestTitle";
+        final Boolean selected = true;
+
+        FieldValue<String> fieldValue1 = this.fieldValueBuilder
+            .value(value)
+            .title(title)
+            .selected(selected)
+            .build();
+
+        this.fieldValueBuilder.clear();
+
+        FieldValue<String> fieldValue2 = this.fieldValueBuilder
+            .value(value)
+            .title(otherTitle) //title is different.
+            .selected(selected)
+            .build();
+
+        //action.
+        boolean areEqual = fieldValue1.equals(fieldValue2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void hashCode_outcomeIs_hashCodeGenerated(){
+
+        //arrange.
+        final int PRIME = 31;
+        int expectedHashCode = 1;
+        final String value = "testValue";
+        final String title = "testTitle";
+        final Boolean selected = true;
+
+        FieldValue<String> fieldValue = this.fieldValueBuilder
+            .value(value)
+            .title(title)
+            .selected(selected)
+            .build();
+
+        expectedHashCode *= PRIME + fieldValue.getTitle().hashCode();
+        expectedHashCode *= PRIME + fieldValue.getValue().hashCode();
+        expectedHashCode *= PRIME + fieldValue.getSelected().hashCode();
+
+        //action.
+        int actualHashCode = fieldValue.hashCode();
+
+        //assert.
+        Assert.assertEquals(expectedHashCode, actualHashCode);
+    }
+
+    @Test
+    public void hashCode_membersAreNull_outcomeIs_hashCodeGenerated(){
+
+        //arrange.
+        final int PRIME = 31;
+        int expectedHashCode = 1;
+        final String value = "testValue";
+
+        FieldValue<String> fieldValue = this.fieldValueBuilder
+            .value(value)
+            .build();
+
+        expectedHashCode *= PRIME + fieldValue.getValue().hashCode();
+
+        //action.
+        int actualHashCode = fieldValue.hashCode();
+
+        //assert.
+        Assert.assertEquals(expectedHashCode, actualHashCode);
     }
 
     @After
