@@ -212,6 +212,220 @@ public class LinkTester {
         Assert.assertEquals(href.toString(), actualHref);
     }
 
+    @Test
+    public void equals_instancesAreEqualWithNulls_outcomeIs_true() throws URISyntaxException {
+
+        //arrange.
+        final String rel = "testRel";
+        final URI href = new URI("http://www.example.com/something");
+
+        Link link1 = this.linkBuilder.rel(rel).href(href).build();
+
+        this.linkBuilder.clear();
+
+        Link link2 = this.linkBuilder.rel(rel).href(href).build();
+
+        //action.
+        boolean areEqual = link1.equals(link2);
+
+        //assert.
+        Assert.assertTrue(areEqual);
+    }
+
+    @Test
+    public void equals_instancesAreEqual_outcomeIs_true() throws URISyntaxException {
+
+        //arrange.
+        final String rel = "testRel";
+        final URI href = new URI("http://www.example.com/something");
+        final String title = "testTitle";
+        final String type = "testType";
+        final String klass = "testKlass";
+
+        Link link1 =
+            this.linkBuilder
+                .rel(rel)
+                .href(href)
+                .title(title)
+                .type(type)
+                .klass(klass)
+                .build();
+
+        this.linkBuilder.clear();
+
+        Link link2 =
+            this.linkBuilder
+                .rel(rel)
+                .href(href)
+                .title(title)
+                .type(type)
+                .klass(klass)
+                .build();
+
+        //action.
+        boolean areEqual = link1.equals(link2);
+
+        //assert.
+        Assert.assertTrue(areEqual);
+    }
+
+    @Test
+    public void equals_instanceIsNull_outcomeIs_false() throws URISyntaxException {
+
+        //arrange.
+        final String rel = "testRel";
+        final URI href = new URI("http://www.example.com/something");
+        final String title = "testTitle";
+        final String type = "testType";
+        final String klass = "testKlass";
+
+        Link link1 =
+            this.linkBuilder
+                .rel(rel)
+                .href(href)
+                .title(title)
+                .type(type)
+                .klass(klass)
+                .build();
+
+        this.linkBuilder.clear();
+
+        Link link2 = null;
+
+        //action.
+        boolean areEqual = link1.equals(link2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void equals_mismatchingClass_outcomeIs_false() throws URISyntaxException {
+
+        //arrange.
+        final String rel = "testRel";
+        final URI href = new URI("http://www.example.com/something");
+        final String title = "testTitle";
+        final String type = "testType";
+        final String klass = "testKlass";
+
+        Link link1 =
+            this.linkBuilder
+                .rel(rel)
+                .href(href)
+                .title(title)
+                .type(type)
+                .klass(klass)
+                .build();
+
+        this.linkBuilder.clear();
+
+        Object link2 = new Object();
+
+        //action.
+        boolean areEqual = link1.equals(link2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void equals_instancesAreNotEqual_outcomeIs_false() throws URISyntaxException {
+
+        //arrange.
+        final String rel = "testRel";
+        final URI href = new URI("http://www.example.com/something");
+        final String title = "testTitle";
+        final String type = "testType";
+        final String klass = "testKlass";
+        final String otherKlass = "otherTestKlass";
+
+        Link link1 =
+            this.linkBuilder
+                .rel(rel)
+                .href(href)
+                .title(title)
+                .type(type)
+                .klass(klass)
+                .build();
+
+        this.linkBuilder.clear();
+
+        Link link2 =
+            this.linkBuilder
+                .rel(rel)
+                .href(href)
+                .title(title)
+                .type(type)
+                .klass(otherKlass) //different class.
+                .build();
+
+        //action.
+        boolean areEqual = link1.equals(link2);
+
+        //assert.
+        Assert.assertFalse(areEqual);
+    }
+
+    @Test
+    public void hashCode_outcomeIs_hashCodeGenerated() throws URISyntaxException {
+
+        //arrange.
+        final int PRIME = 31;
+        int expectedHashCode = 1;
+        final String rel = "testRel";
+        final URI href = new URI("http://www.example.com/something");
+        final String title = "testTitle";
+        final String type = "testType";
+        final String klass = "testKlass";
+
+        Link link =
+            this.linkBuilder
+                .rel(rel)
+                .href(href)
+                .title(title)
+                .type(type)
+                .klass(klass)
+                .build();
+
+        expectedHashCode *= PRIME + link.getTitle().hashCode();
+        expectedHashCode *= PRIME + link.getKlass().hashCode();
+        expectedHashCode *= PRIME + link.getType().hashCode();
+        expectedHashCode *= PRIME + link.getHref().hashCode();
+        expectedHashCode *= PRIME + link.getRel().hashCode();
+
+        //action.
+        int actualHashCode = link.hashCode();
+
+        //assert.
+        Assert.assertEquals(expectedHashCode, actualHashCode);
+    }
+
+    @Test
+    public void hashCode_membersAreNull_outcomeIs_hashCodeGenerated() throws URISyntaxException {
+
+        //arrange.
+        final int PRIME = 31;
+        int expectedHashCode = 1;
+        final String rel = "testRel";
+        final URI href = new URI("http://www.example.com/something");
+
+        Link link =
+            this.linkBuilder
+                .rel(rel)
+                .href(href)
+                .build();
+
+        expectedHashCode *= PRIME + link.getHref().hashCode();
+        expectedHashCode *= PRIME + link.getRel().hashCode();
+
+        //action.
+        int actualHashCode = link.hashCode();
+
+        //assert.
+        Assert.assertEquals(expectedHashCode, actualHashCode);
+    }
+
     @After
     public void tearDown(){
         this.linkBuilder = null;
