@@ -1,5 +1,7 @@
 package siren;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -281,6 +283,7 @@ public class Action {
      * are implementation-dependent and should be documented.
      * @return The class of the action.
      */
+    @JsonProperty("class")
     public List<String> getKlass(){
         if(this.klass == null) return this.klass;
         List<String> klassCopy = new ArrayList<>();

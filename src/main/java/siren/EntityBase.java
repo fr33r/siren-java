@@ -1,5 +1,7 @@
 package siren;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,7 @@ public abstract class EntityBase {
      * Retrieves the class of the entity.
      * @return The class of the entity.
      */
+    @JsonProperty("class")
     public List<String> getKlass(){
         if(this.klass == null) return this.klass;
         List<String> classesCopy = new ArrayList<>();

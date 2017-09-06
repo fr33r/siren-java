@@ -1,5 +1,7 @@
 package siren;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -293,6 +295,7 @@ public class Link {
      * on the current representation. Possible values are
      * implementation-dependent and should be documented.
      */
+    @JsonProperty("class")
     public List<String> getKlass(){
         if(this.klass == null) return this.klass;
         List<String> classesCopy = new ArrayList<>();
