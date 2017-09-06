@@ -165,10 +165,7 @@ public class Field<T> {
 
         Field<T> field = (Field<T>)obj;
 
-        boolean sameName =
-            this.name == null && field.name == null ||
-            this.name != null && field.name != null &&
-            this.name.equals(field.name);
+        boolean sameName = this.name.equals(field.name);
 
         boolean sameTitle =
             this.title == null && field.title == null ||
@@ -198,9 +195,7 @@ public class Field<T> {
         final int PRIME = 31;
         int hashCode = 1;
 
-        if(this.name != null){
-            hashCode *= PRIME + this.name.hashCode();
-        }
+        hashCode *= PRIME + this.name.hashCode();
 
         if(this.title != null){
             hashCode *= PRIME + this.title.hashCode();

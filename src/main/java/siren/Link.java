@@ -184,6 +184,7 @@ public class Link {
         if(href == null){
             throw new IllegalArgumentException("'href' cannot be null as it is required.");
         }
+
         this.rel = rel;
         this.href = href.toString();
     }
@@ -219,20 +220,13 @@ public class Link {
 
         Link link = (Link)obj;
 
-        boolean sameRel =
-            this.rel == null && link.rel == null ||
-            this.rel != null && link.rel != null &&
-            this.rel.equals(link.rel);
+        boolean sameRel = this.rel.equals(link.rel);
+        boolean sameHref = this.href.equals(link.href);
 
         boolean sameTitle =
             this.title == null && link.title == null ||
             this.title != null && link.title != null &&
             this.title.equals(link.title);
-
-        boolean sameHref =
-            this.href == null && link.href == null ||
-            this.href != null && link.href != null &&
-            this.href.equals(link.href);
 
         boolean sameType =
             this.type == null && link.type == null ||
@@ -257,16 +251,11 @@ public class Link {
         final int PRIME = 31;
         int hashCode = 1;
 
-        if(this.rel != null){
-            hashCode *= PRIME + this.rel.hashCode();
-        }
+        hashCode *= PRIME + this.rel.hashCode();
+        hashCode *= PRIME + this.href.hashCode();
 
         if(this.title != null){
             hashCode *= PRIME + this.title.hashCode();
-        }
-
-        if(this.href != null){
-            hashCode *= PRIME + this.href.hashCode();
         }
 
         if(this.type != null){

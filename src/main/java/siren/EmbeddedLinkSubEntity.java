@@ -151,6 +151,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
         if(href == null){
             throw new IllegalArgumentException("'href' cannot be null as it is required.");
         }
+
         this.rel = rel;
         this.href = href;
     }
@@ -184,14 +185,8 @@ public class EmbeddedLinkSubEntity extends EntityBase {
                 (EmbeddedLinkSubEntity) obj;
 
         boolean superIsEqual = super.equals(embeddedLinkSubEntity);
-        boolean relIsEqual =
-                this.rel == null && embeddedLinkSubEntity.rel == null ||
-                this.rel != null && embeddedLinkSubEntity.rel != null &&
-                this.rel.equals(embeddedLinkSubEntity.rel);
-        boolean hrefIsEqual =
-                this.href == null && embeddedLinkSubEntity.href == null ||
-                this.href != null && embeddedLinkSubEntity.href != null &&
-                this.href.equals(embeddedLinkSubEntity.href);
+        boolean relIsEqual = this.rel.equals(embeddedLinkSubEntity.rel);
+        boolean hrefIsEqual = this.href.equals(embeddedLinkSubEntity.href);
         boolean typeIsEqual =
                 this.type == null && embeddedLinkSubEntity.type == null ||
                 this.type != null && embeddedLinkSubEntity.type != null &&
@@ -209,13 +204,8 @@ public class EmbeddedLinkSubEntity extends EntityBase {
         final int PRIME = 31;
         int hashCode = super.hashCode();
 
-        if(this.rel != null){
-            hashCode *= PRIME + this.rel.hashCode();
-        }
-
-        if(this.href != null){
-            hashCode *= PRIME + this.href.hashCode();
-        }
+        hashCode *= PRIME + this.rel.hashCode();
+        hashCode *= PRIME + this.href.hashCode();
 
         if(this.type != null){
             hashCode *= PRIME + this.type.hashCode();

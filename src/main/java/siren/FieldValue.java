@@ -142,15 +142,12 @@ public class FieldValue<T> {
 
         FieldValue<T> fieldValue = (FieldValue<T>)obj;
 
+        boolean sameValue = this.value.equals(fieldValue.value);
+
         boolean sameTitle =
             this.title == null && fieldValue.title == null ||
             this.title != null && fieldValue.title != null &&
             this.title.equals(fieldValue.title);
-
-        boolean sameValue =
-            this.value == null && fieldValue.value == null ||
-            this.value != null && fieldValue.value != null &&
-            this.value.equals(fieldValue.value);
 
         boolean sameSelected =
             this.selected == null && fieldValue.selected == null ||
@@ -170,12 +167,10 @@ public class FieldValue<T> {
         final int PRIME = 31;
         int hashCode = 1;
 
+        hashCode *= PRIME + this.value.hashCode();
+
         if(this.title != null){
             hashCode *= PRIME + this.title.hashCode();
-        }
-
-        if(this.value != null){
-            hashCode *= PRIME + this.value.hashCode();
         }
 
         if(this.selected != null){

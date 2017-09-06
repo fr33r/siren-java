@@ -216,6 +216,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
         if(rel == null){
             throw new IllegalArgumentException("'rel' cannot be null as it is required.");
         }
+
         this.rel = rel;
     }
 
@@ -233,10 +234,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
                 (EmbeddedRepresentationSubEntity)obj;
 
         boolean superIsEqual = super.equals(embeddedRepSubEntity);
-        boolean relIsEqual =
-                this.rel == null && embeddedRepSubEntity.rel == null ||
-                this.rel != null && embeddedRepSubEntity.rel != null &&
-                this.rel.equals(embeddedRepSubEntity.rel);
+        boolean relIsEqual = rel.equals(embeddedRepSubEntity.rel);
 
         return superIsEqual && relIsEqual;
     }
@@ -250,9 +248,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
         final int PRIME = 31;
         int hashCode = super.hashCode();
 
-        if(this.rel != null){
-            hashCode *= PRIME + this.rel.hashCode();
-        }
+        hashCode *= PRIME + this.rel.hashCode();
 
         return hashCode;
     }

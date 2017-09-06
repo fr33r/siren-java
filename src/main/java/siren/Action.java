@@ -207,10 +207,8 @@ public class Action {
 
         Action action = (Action)obj;
 
-        boolean sameName =
-            this.name == null && action.name == null ||
-            this.name != null && action.name != null &&
-            this.name.equals(action.name);
+        boolean sameName = this.name.equals(action.name);
+        boolean sameHref = this.href.equals(action.href);
 
         boolean sameTitle =
             this.title == null && action.title == null ||
@@ -221,11 +219,6 @@ public class Action {
             this.method == null && action.method == null ||
             this.method != null && action.method != null &&
             this.method.equals(action.method);
-
-        boolean sameHref =
-            this.href == null && action.href == null ||
-            this.href != null && action.href != null &&
-            this.href.equals(action.href);
 
         boolean sameFields =
             this.fields == null && action.fields == null ||
@@ -256,9 +249,8 @@ public class Action {
         final int PRIME = 31;
         int hashCode = 1;
 
-        if (this.name != null) {
-            hashCode *= PRIME + this.name.hashCode();
-        }
+        hashCode *= PRIME + this.name.hashCode();
+        hashCode *= PRIME + this.href.hashCode();
 
         if (this.title != null) {
             hashCode *= PRIME + this.title.hashCode();
@@ -266,10 +258,6 @@ public class Action {
 
         if (this.method != null) {
             hashCode *= PRIME + this.method.hashCode();
-        }
-
-        if (this.href != null) {
-            hashCode *= PRIME + this.href.hashCode();
         }
 
         if (this.fields != null) {
