@@ -99,7 +99,13 @@ public class FieldValue<T> {
         }
 
         //perform type checking on T to ensure it's either a number or a string.
-        boolean isShort, isInteger, isLong, isDouble, isFloat, isNumber, isString;
+        boolean isShort;
+        boolean isInteger;
+        boolean isLong;
+        boolean isDouble;
+        boolean isFloat;
+        boolean isNumber;
+        boolean isString;
 
         isFloat = value instanceof Float;
         isDouble = value instanceof Double;

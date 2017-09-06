@@ -131,8 +131,14 @@ public class Field<T> {
         this(name);
 
         //perform type checking on T to ensure it's either a number, a string, or a list (of FieldValue).
-        boolean isShort, isInteger, isLong, isDouble,
-                isFloat, isNumber, isString, isList;
+        boolean isShort;
+        boolean isInteger;
+        boolean isLong;
+        boolean isDouble;
+        boolean isFloat;
+        boolean isNumber;
+        boolean isString;
+        boolean isList;
 
         isFloat = value instanceof Float;
         isDouble = value instanceof Double;
