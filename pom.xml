@@ -7,6 +7,14 @@
     <groupId>com.freer</groupId>
     <artifactId>siren</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>siren-java</name>
+    <description>A Java implementation of Siren, which is a hypermedia specification for representing entities.</description>
+    <url>https://github.com/freerjm/siren-java</url>
+
+    <issueManagement>
+        <url>https://github.com/freerjm/siren-java/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
 
     <build>
         <plugins>
@@ -50,4 +58,22 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <email>freerjm@miamioh.com</email>
+            <name>Jon Freer</name>
+            <url>https://github.com/freerjm</url>
+            <id>freerjm</id>
+        </developer>
+    </developers>
+
 </project>
