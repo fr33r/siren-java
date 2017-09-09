@@ -1,5 +1,7 @@
 package siren;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,7 +20,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
      */
     public static class Builder implements siren.Builder<EmbeddedRepresentationSubEntity>{
 
-        private List<String> rel;
+        private List<Relation> rel;
         private List<String> klass;
         private Map<String, Object> properties;
         private List<Action> actions;
@@ -132,9 +134,39 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          * @param rel The relationship of the sub-entity to its parent, per Web Linking (RFC5899).
          * @return The builder this method is called on.
          *
+         * @throws URISyntaxException Thrown if the textual representation of the relation
+         * is not a registered relation, and is not a valid URI. All extension relations must
+         * be in the form of a URI.
+         */
+        public Builder rel(String rel) throws URISyntaxException {
+            if(rel == null){
+                throw new IllegalArgumentException("'rel' cannot be null.");
+            }
+            return this.rel(new Relation(rel));
+        }
+
+        /**
+         * Adds the relation provided to the current state of the builder.
+         * @param rel The relationship of the sub-entity to its parent, per Web Linking (RFC5899).
+         * @return The builder this method is called on.
+         *
          * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
          */
-        public Builder rel(String rel){
+        public Builder rel(URI rel) {
+            if(rel == null){
+                throw new IllegalArgumentException("'rel' cannot be null.");
+            }
+            return this.rel(new Relation(rel));
+        }
+
+        /**
+         * Adds the relation provided to the current state of the builder.
+         * @param rel The relationship of the sub-entity to its parent, per Web Linking (RFC5899).
+         * @return The builder this method is called on.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
+         */
+        public Builder rel(Relation rel) {
             if(rel == null){
                 throw new IllegalArgumentException("'rel' cannot be null.");
             }
@@ -185,7 +217,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
      *
      * @see <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a>
      */
-    private List<String> rel;
+    private List<Relation> rel;
 
     /**
      * Constructs an instance of {@link EmbeddedRepresentationSubEntity}.
@@ -208,7 +240,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
             List<Action> actions,
             List<Link> links,
             String title,
-            List<String> rel,
+            List<Relation> rel,
             List<EntityBase> subEntities
     ){
         super(klass, properties, actions, links, title, subEntities);
@@ -259,9 +291,9 @@ public class EmbeddedRepresentationSubEntity extends Entity {
      *
      * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
      */
-    public List<String> getRel(){
+    public List<Relation> getRel(){
         if(this.rel == null) return this.rel;
-        List<String> relCopy = new ArrayList<>();
+        List<Relation> relCopy = new ArrayList<>();
         relCopy.addAll(this.rel);
         return relCopy;
     }

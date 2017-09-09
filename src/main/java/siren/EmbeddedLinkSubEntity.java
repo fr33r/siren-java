@@ -1,6 +1,7 @@
 package siren;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
      */
     public static class Builder implements siren.Builder<EmbeddedLinkSubEntity>{
 
-        private List<String> rel;
+        private List<Relation> rel;
         private URI href;
         private String type;
         private List<String> klass;
@@ -58,9 +59,39 @@ public class EmbeddedLinkSubEntity extends EntityBase {
          * @param rel The relationship of the sub-entity to its parent, per Web Linking (RFC5899).
          * @return The builder this method is called on.
          *
+         * @throws URISyntaxException Thrown if the textual representation of the relation
+         * is not a registered relation, and is not a valid URI. All extension relations must
+         * be in the form of a URI.
+         */
+        public Builder rel(String rel) throws URISyntaxException {
+            if(rel == null){
+                throw new IllegalArgumentException("'rel' cannot be null.");
+            }
+            return this.rel(new Relation(rel));
+        }
+
+        /**
+         * Adds the relation provided to the current state of the builder.
+         * @param rel The relationship of the sub-entity to its parent, per Web Linking (RFC5899).
+         * @return The builder this method is called on.
+         *
          * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
          */
-        public Builder rel(String rel){
+        public Builder rel(URI rel){
+            if(rel == null){
+                throw new IllegalArgumentException("'rel' cannot be null.");
+            }
+            return this.rel(new Relation(rel));
+        }
+
+        /**
+         * Adds the relation provided to the current state of the builder.
+         * @param rel The relationship of the sub-entity to its parent, per Web Linking (RFC5899).
+         * @return The builder this method is called on.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
+         */
+        public Builder rel(Relation rel){
             if(rel == null){
                 throw new IllegalArgumentException("'rel' cannot be null.");
             }
@@ -120,7 +151,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
     /**
      *  Defines the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
      */
-    private List<String> rel;
+    private List<Relation> rel;
 
     /**
      * The URI of the linked sub-entity.
@@ -141,7 +172,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
      * @param rel Defines the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
      * @param href The URI of the linked sub-entity.
      */
-    private EmbeddedLinkSubEntity(List<String> klass, String title, List<String> rel, URI href){
+    private EmbeddedLinkSubEntity(List<String> klass, String title, List<Relation> rel, URI href){
         super(klass, title);
 
         if(rel == null){
@@ -165,7 +196,7 @@ public class EmbeddedLinkSubEntity extends EntityBase {
      * @param href The URI of the linked sub-entity.
      * @param type Defines the relationship of the sub-entity to its parent, per Web Linking (RFC5899).
      */
-    private EmbeddedLinkSubEntity(List<String> klass, String title, List<String> rel, URI href, String type){
+    private EmbeddedLinkSubEntity(List<String> klass, String title, List<Relation> rel, URI href, String type){
         this(klass, title, rel, href);
 
         this.type = type;
@@ -220,9 +251,9 @@ public class EmbeddedLinkSubEntity extends EntityBase {
      *
      * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
      */
-    public List<String> getRel(){
+    public List<Relation> getRel(){
         if(this.rel == null) return this.rel;
-        List<String> relCopy = new ArrayList<>();
+        List<Relation> relCopy = new ArrayList<>();
         relCopy.addAll(this.rel);
         return relCopy;
     }

@@ -3,6 +3,7 @@ package siren;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class Link {
         private List<String> klass;
         private String title;
         private String type;
-        private List<String> rel;
+        private List<Relation> rel;
         private URI href;
 
         /**
@@ -38,8 +39,45 @@ public class Link {
          *      Link Relations
          *     </a>
          * @return The builder this method is called on.
+         * @throws URISyntaxException Thrown if the textual representation of the relation
+         * is not a registered relation, and is not a valid URI. All extension relations must
+         * be in the form of a URI.
          */
-        public Builder rel(String rel){
+        public Builder rel(String rel) throws URISyntaxException {
+            if(rel == null){
+                throw new IllegalArgumentException("'rel' cannot be null.");
+            }
+            return this.rel(new Relation(rel));
+        }
+
+        /**
+         * Adds the relation provided to the current state of the builder.
+         * @param rel Defines the relationship of the link to its
+         *            entity, per Web Linking (RFC5988) and Link Relations.
+         * @see <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a>
+         * @see <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">
+         *      Link Relations
+         *     </a>
+         * @return The builder this method is called on.
+         */
+        public Builder rel(URI rel) {
+            if(rel == null){
+                throw new IllegalArgumentException("'rel' cannot be null.");
+            }
+            return this.rel(new Relation(rel));
+        }
+
+        /**
+         * Adds the relation provided to the current state of the builder.
+         * @param rel Defines the relationship of the link to its
+         *            entity, per Web Linking (RFC5988) and Link Relations.
+         * @see <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a>
+         * @see <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">
+         *      Link Relations
+         *     </a>
+         * @return The builder this method is called on.
+         */
+        public Builder rel(Relation rel) {
             if(rel == null){
                 throw new IllegalArgumentException("'rel' cannot be null.");
             }
@@ -141,7 +179,7 @@ public class Link {
      *          Link Relations
      *      </a>
      */
-    private List<String> rel;
+    private List<Relation> rel;
 
     /**
      * The URI of the linked resource. Required.
@@ -178,7 +216,7 @@ public class Link {
      *            per Web Linking (RFC5988) and Link Relations.
      * @param href The URI of the linked resource.
      */
-    private Link(List<String> rel, URI href){
+    private Link(List<Relation> rel, URI href){
         if(rel == null){
             throw new IllegalArgumentException("'rel' cannot be null as it is required.");
         }
@@ -202,7 +240,7 @@ public class Link {
      * @param klass List of strings describing aspects of the link based on the current representation.
      *              Possible values are implementation-dependent and should be documented.
      */
-    private Link(List<String> rel, URI href, String title, String type, List<String> klass){
+    private Link(List<Relation> rel, URI href, String title, String type, List<String> klass){
         this(rel, href);
 
         this.title = title;
@@ -282,9 +320,9 @@ public class Link {
      *      Link Relations
      *     </a>
      */
-    public List<String> getRel(){
+    public List<Relation> getRel(){
         if(this.rel == null) return this.rel;
-        List<String> relCopy = new ArrayList<>();
+        List<Relation> relCopy = new ArrayList<>();
         relCopy.addAll(this.rel);
         return relCopy;
     }

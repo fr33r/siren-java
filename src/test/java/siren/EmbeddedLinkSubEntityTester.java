@@ -26,7 +26,7 @@ public class EmbeddedLinkSubEntityTester {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void rel_nullRel_outcomeIs_IllegalArgumentException() {
+    public void rel_nullRel_outcomeIs_IllegalArgumentException() throws URISyntaxException {
 
         //arrange.
         final String rel = null;
@@ -36,7 +36,7 @@ public class EmbeddedLinkSubEntityTester {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void href_nullHref_outcomeIs_IllegalArgumentException() {
+    public void href_nullHref_outcomeIs_IllegalArgumentException() throws URISyntaxException {
 
         //arrange.
         final String rel = "testRel";
@@ -70,9 +70,9 @@ public class EmbeddedLinkSubEntityTester {
         //arrange.
         final URI href = new URI("https://www.example.com/");
         final String rel = "testRel";
-        final List<String> rels =
-                new ArrayList<String>();
-        rels.add(rel);
+        final List<Relation> rels =
+                new ArrayList<>();
+        rels.add(new Relation(rel));
 
         //action.
         EmbeddedLinkSubEntity actualEntity =

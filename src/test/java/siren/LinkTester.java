@@ -60,15 +60,16 @@ public class LinkTester {
         //arrange.
         final String uri = "http://www.example.com/href";
         final String rel = "relTest";
+        final Relation relation = new Relation(rel);
         final URI href = new URI(uri);
         Link link = this.linkBuilder.rel(rel).href(href).build();
 
         //action.
-        List<String> actualRel = link.getRel();
+        List<Relation> actualRel = link.getRel();
 
         //assert.
         Assert.assertEquals(1, actualRel.size());
-        Assert.assertEquals(actualRel.get(0), rel);
+        Assert.assertEquals(relation, actualRel.get(0));
     }
 
     @Test
