@@ -320,8 +320,8 @@ public class Action {
      * Retrieves the href of the action. The href is the URI of the action.
      * @return The href of the action.
      */
-    public String getHref(){
-        return this.href.toString();
+    public URI getHref(){
+        return this.href;
     }
 
     /**

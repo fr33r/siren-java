@@ -182,10 +182,10 @@ public class ActionTester {
                         .build();
 
         //action.
-        String actualHref = action.getHref();
+        URI actualHref = action.getHref();
 
         //assert.
-        Assert.assertEquals(href.toString(), actualHref);
+        Assert.assertEquals(href, actualHref);
     }
 
     @Test

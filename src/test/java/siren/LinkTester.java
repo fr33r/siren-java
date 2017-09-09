@@ -25,7 +25,7 @@ public class LinkTester {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void rel_nullRel_outcomeIs_IllegalArgumentException() {
+    public void rel_nullRel_outcomeIs_IllegalArgumentException() throws URISyntaxException {
 
         //arrange.
         final String rel = null;
@@ -48,10 +48,10 @@ public class LinkTester {
     public void href_nullHref_outcomeIs_IllegalArgumentException() {
 
         //arrange.
-        final String href = null;
+        final URI href = null;
 
         //action.
-        this.linkBuilder.rel(href).build();
+        this.linkBuilder.href(href).build();
     }
 
     @Test
@@ -206,10 +206,10 @@ public class LinkTester {
                         .build();
 
         //action.
-        String actualHref = link.getHref();
+        URI actualHref = link.getHref();
 
         //assert.
-        Assert.assertEquals(href.toString(), actualHref);
+        Assert.assertEquals(href, actualHref);
     }
 
     @Test

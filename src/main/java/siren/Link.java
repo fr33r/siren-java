@@ -146,7 +146,7 @@ public class Link {
     /**
      * The URI of the linked resource. Required.
      */
-    private String href;
+    private URI href;
 
     /**
      * Describes aspects of the link based on the current
@@ -188,7 +188,7 @@ public class Link {
         }
 
         this.rel = rel;
-        this.href = href.toString();
+        this.href = href;
     }
 
     /**
@@ -330,7 +330,7 @@ public class Link {
      * Retrieves the URI of the linked resource.
      * @return The URI of the linked resource.
      */
-    public String getHref(){
+    public URI getHref(){
         return this.href;
     }
 }

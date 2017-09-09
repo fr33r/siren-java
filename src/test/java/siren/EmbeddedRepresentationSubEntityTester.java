@@ -77,7 +77,7 @@ public class EmbeddedRepresentationSubEntityTester {
     }
 
     @Test
-    public void getProperties_outcomeIs_propertiesRetrieved(){
+    public void getProperties_outcomeIs_propertiesRetrieved() throws URISyntaxException {
 
         //arrange.
         final String propertyKey = "key";
