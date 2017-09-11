@@ -183,6 +183,10 @@ public class EmbeddedLinkSubEntity extends EntityBase {
             throw new IllegalArgumentException("'href' cannot be null as it is required.");
         }
 
+        if(rel.size() < 1){
+            throw new IllegalStateException("'rel' must contain at least one element.");
+        }
+
         this.rel = rel;
         this.href = href;
     }

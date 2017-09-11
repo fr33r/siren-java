@@ -249,6 +249,10 @@ public class EmbeddedRepresentationSubEntity extends Entity {
             throw new IllegalArgumentException("'rel' cannot be null as it is required.");
         }
 
+        if(rel.size() < 1){
+            throw new IllegalStateException("'rel' must contain at least one element.");
+        }
+
         this.rel = rel;
     }
 
