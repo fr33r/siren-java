@@ -68,7 +68,7 @@ public class FieldValueTester {
         FieldValue fieldValue = this.fieldValueBuilder.value(valueAfterClear).build();
 
         Assert.assertNull(fieldValue.getTitle());
-        Assert.assertNull(fieldValue.getSelected());
+        Assert.assertFalse(fieldValue.getSelected());
         Assert.assertEquals(valueAfterClear, fieldValue.getValue());
     }
 
@@ -128,7 +128,7 @@ public class FieldValueTester {
     }
 
     @Test
-    public void getSelected_nullSelected_outcomeIs_Null() {
+    public void getSelected_notSpecified_outcomeIs_False() {
 
         //arrange.
         final String value = "valueTest";
@@ -141,7 +141,7 @@ public class FieldValueTester {
         Boolean actualSelected = field.getSelected();
 
         //assert.
-        Assert.assertNull(actualSelected);
+        Assert.assertFalse(actualSelected);
     }
 
     @Test
@@ -304,7 +304,7 @@ public class FieldValueTester {
     }
 
     @Test
-    public void hashCode_membersAreNull_outcomeIs_hashCodeGenerated(){
+    public void hashCode_optionalMembersNotSpecified_outcomeIs_hashCodeGenerated(){
 
         //arrange.
         final int PRIME = 31;
@@ -316,6 +316,7 @@ public class FieldValueTester {
             .build();
 
         expectedHashCode *= PRIME + fieldValue.getValue().hashCode();
+        expectedHashCode *= PRIME + fieldValue.getSelected().hashCode();
 
         //action.
         int actualHashCode = fieldValue.hashCode();

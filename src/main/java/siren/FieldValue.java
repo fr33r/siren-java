@@ -132,7 +132,9 @@ public class FieldValue<T> {
         this(value);
 
         this.title = title;
-        this.selected = selected;
+        this.selected = false;
+
+        if(selected != null) this.selected = selected;
     }
 
     /**
@@ -149,16 +151,12 @@ public class FieldValue<T> {
         FieldValue<T> fieldValue = (FieldValue<T>)obj;
 
         boolean sameValue = this.value.equals(fieldValue.value);
+        boolean sameSelected = this.selected.equals(fieldValue.selected);
 
         boolean sameTitle =
             this.title == null && fieldValue.title == null ||
             this.title != null && fieldValue.title != null &&
             this.title.equals(fieldValue.title);
-
-        boolean sameSelected =
-            this.selected == null && fieldValue.selected == null ||
-            this.selected != null && fieldValue.selected != null &&
-            this.selected.equals(fieldValue.selected);
 
         return sameTitle && sameValue && sameSelected;
     }
@@ -174,13 +172,10 @@ public class FieldValue<T> {
         int hashCode = 1;
 
         hashCode *= PRIME + this.value.hashCode();
+        hashCode *= PRIME + this.selected.hashCode();
 
         if(this.title != null){
             hashCode *= PRIME + this.title.hashCode();
-        }
-
-        if(this.selected != null){
-            hashCode *= PRIME + this.selected.hashCode();
         }
 
         return hashCode;
