@@ -16,6 +16,12 @@
         <system>GitHub Issues</system>
     </issueManagement>
 
+    <scm>
+        <connection>scm:git:git://github.com/freerjm/siren-java.git</connection>
+        <developerConnection>scm:git:ssh://github.com/freerjm/siren-java.git</developerConnection>
+        <url>https://github.com/freerjm/siren-java</url>
+    </scm>
+
     <build>
         <plugins>
             <plugin>
