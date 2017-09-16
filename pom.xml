@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jonfreer</groupId>
-    <artifactId>siren</artifactId>
-    <version>1.1</version>
+    <artifactId>${artifactId}</artifactId>
+    <version>${version}</version>
     <name>siren-java</name>
     <description>A Java implementation of Siren, which is a hypermedia specification for representing entities.</description>
     <url>https://github.com/freerjm/siren-java</url>
@@ -42,6 +42,32 @@
                     </includes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.0.4</version>
+                <executions>
+                    <execution>
+                        <id>${artifactId}-${version}-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <id>${artifactId}-${version}-javadoc</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -75,5 +101,10 @@
             <id>freerjm</id>
         </developer>
     </developers>
+
+    <properties>
+        <version>1.0.0</version>
+        <artifactId>siren</artifactId>
+    </properties>
 
 </project>
