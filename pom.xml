@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.jonfreer</groupId>
-    <artifactId>${artifactId}</artifactId>
-    <version>${version}</version>
+    <artifactId>siren</artifactId>
+    <version>1.0.0</version>
     <name>siren-java</name>
     <description>A Java implementation of Siren, which is a hypermedia specification for representing entities.</description>
     <url>https://github.com/freerjm/siren-java</url>
@@ -48,7 +48,7 @@
                 <version>2.0.4</version>
                 <executions>
                     <execution>
-                        <id>${artifactId}-${version}-sources</id>
+                        <id>${project.artifactId}-${project.version}-sources</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
@@ -61,7 +61,7 @@
                 <version>2.3</version>
                 <executions>
                     <execution>
-                        <id>${artifactId}-${version}-javadoc</id>
+                        <id>${project.artifactId}-${project.version}-javadoc</id>
                         <goals>
                             <goal>jar</goal>
                         </goals>
