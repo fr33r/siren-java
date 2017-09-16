@@ -80,3 +80,29 @@ Entity entity =
  
 */
 ```
+
+## Include Steps
+
+### Maven
+
+If you are utilizing Apache Maven for your project, all you have to do is drop the following
+XML into your `pom.xml`:
+
+```xml
+<dependency>
+  <groupId>com.jonfreer</groupId>
+  <artifactId>siren</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+If you want to go a step further and include the javadocs, include this in your `pom.xml` as well:
+
+```xml
+<dependency>
+  <groupId>com.jonfreer</groupId>
+  <artifactId>siren</artifactId>
+  <version>1.0.0</version>
+  <classifier>javadoc</classifier>
+</dependency>
+```
