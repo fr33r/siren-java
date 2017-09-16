@@ -103,8 +103,7 @@
     </developers>
 
     <properties>
-        <version>1.0.0</version>
-        <artifactId>siren</artifactId>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
 </project>
