@@ -93,6 +93,18 @@ public class Action {
         }
 
         /**
+         * Adds the fields provided to the current state of the builder.
+         * @param fields Represent controls inside of the action.
+         * @return The builder this method is called on.
+         */
+        public Builder fields(Field... fields){
+            for(Field field : fields){
+                this.field(field);
+            }
+            return this;
+        }
+
+        /**
          * Adds the class provided to the current state of the builder.
          * @param klass Describes the nature of an action based on the current representation.
          * @return The builder this method is called on.
@@ -102,6 +114,18 @@ public class Action {
                 this.klass = new ArrayList<>();
             }
             this.klass.add(klass);
+            return this;
+        }
+
+        /**
+         * Adds the classes provided to the current state of the builder.
+         * @param klasses Descriptions of the nature of an action based on the current representation.
+         * @return The builder this method is called on.
+         */
+        public Builder klasses(String... klasses){
+            for(String klass : klasses){
+                this.klass(klass);
+            }
             return this;
         }
 
@@ -126,15 +150,14 @@ public class Action {
          */
         @Override
         public Action build() {
-            // TODO 2017-08-15 - FREER - Do some checking that required state has been set.
             return new Action(
-                    this.name,
-                    this.title,
-                    this.method,
-                    this.href,
-                    this.fields,
-                    this.type,
-                    this.klass
+                this.name,
+                this.title,
+                this.method,
+                this.href,
+                this.fields,
+                this.type,
+                this.klass
             );
         }
     }

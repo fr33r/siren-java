@@ -25,10 +25,30 @@ public class LinkTester {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void rel_nullRel_outcomeIs_IllegalArgumentException() throws URISyntaxException {
+    public void rel_nullRelAsString_outcomeIs_IllegalArgumentException() throws URISyntaxException {
 
         //arrange.
         final String rel = null;
+
+        //action.
+        this.linkBuilder.rel(rel).build();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void rel_nullRelAsURI_outcomeIs_IllegalArgumentException() throws URISyntaxException {
+
+        //arrange.
+        final URI rel = null;
+
+        //action.
+        this.linkBuilder.rel(rel).build();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void rel_nullRelAsRelation_outcomeIs_IllegalArgumentException() throws URISyntaxException {
+
+        //arrange.
+        final Relation rel = null;
 
         //action.
         this.linkBuilder.rel(rel).build();
@@ -59,39 +79,52 @@ public class LinkTester {
 
         //arrange.
         final String uri = "http://www.example.com/href";
-        final String rel = "relTest";
-        final Relation relation = new Relation(rel);
+        final String rel1 = "relTest";
+        final String rel2 = "relTest2";
+        final Relation relation1 = new Relation(rel1);
+        final Relation relation2 = new Relation(rel2);
         final URI href = new URI(uri);
-        Link link = this.linkBuilder.rel(rel).href(href).build();
+
+        Link link =
+            this.linkBuilder
+                .rels(relation1, relation2)
+                .href(href)
+                .build();
 
         //action.
         List<Relation> actualRel = link.getRel();
 
         //assert.
-        Assert.assertEquals(1, actualRel.size());
-        Assert.assertEquals(relation, actualRel.get(0));
+        Assert.assertEquals(2, actualRel.size());
+        Assert.assertEquals(relation1, actualRel.get(0));
+        Assert.assertEquals(relation2, actualRel.get(1));
     }
 
     @Test
     public void getKlass_outcomeIs_ClassRetrieved() throws URISyntaxException {
 
         //arrange.
-        final String klass = "klassTest";
+        final String klass1 = "klassTest";
+        final String klass2 = "klassTest2";
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
+        final String rel1 = "testRel1";
+        final String rel2 = "testRel2";
+
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .klass(klass)
-                        .build();
+            this.linkBuilder
+                .rels(rel1, rel2)
+                .href(href)
+                .klasses(klass1, klass2)
+                .build();
 
         //action.
         List<String> actualClass = link.getKlass();
 
         //assert.
-        Assert.assertEquals(1, actualClass.size());
-        Assert.assertEquals(klass, actualClass.get(0));
+        Assert.assertEquals(2, actualClass.size());
+        Assert.assertEquals(klass1, actualClass.get(0));
+        Assert.assertEquals(klass2, actualClass.get(1));
     }
 
     @Test
@@ -101,11 +134,14 @@ public class LinkTester {
         final String klass = "klassTest";
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
+        final URI rel1 = new URI("http://www.example.com/relation1");
+        final URI rel2 = new URI("http://www.example.com/relation2");
+
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .build();
+            this.linkBuilder
+                .rels(rel1, rel2)
+                .href(href)
+                .build();
 
         //action.
         List<String> actualClass = link.getKlass();
@@ -121,12 +157,13 @@ public class LinkTester {
         final String title = "titleTest";
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
+
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .title(title)
-                        .build();
+            this.linkBuilder
+                .rel("relTest")
+                .href(href)
+                .title(title)
+                .build();
 
         //action.
         String actualTitle = link.getTitle();
@@ -142,10 +179,10 @@ public class LinkTester {
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .build();
+            this.linkBuilder
+                .rel("relTest")
+                .href(href)
+                .build();
 
         //action.
         String actualTitle = link.getTitle();
@@ -162,11 +199,11 @@ public class LinkTester {
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .type(type)
-                        .build();
+            this.linkBuilder
+                .rel("relTest")
+                .href(href)
+                .type(type)
+                .build();
 
         //action.
         String actualType = link.getType();
@@ -182,10 +219,10 @@ public class LinkTester {
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .build();
+            this.linkBuilder
+                .rel("relTest")
+                .href(href)
+                .build();
 
         //action.
         String actualType = link.getType();
@@ -201,10 +238,10 @@ public class LinkTester {
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .build();
+            this.linkBuilder
+                .rel("relTest")
+                .href(href)
+                .build();
 
         //action.
         URI actualHref = link.getHref();

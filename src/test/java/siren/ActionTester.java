@@ -72,8 +72,7 @@ public class ActionTester {
                 this.actionBuilder
                         .name(name)
                         .href(href)
-                        .klass(klass1)
-                        .klass(klass2)
+                        .klasses(klass1, klass2)
                         .build();
 
         //action.
@@ -236,8 +235,7 @@ public class ActionTester {
         Action action =
                 this.actionBuilder
                         .name(name)
-                        .field(field1)
-                        .field(field2)
+                        .fields(field1, field2)
                         .href(href)
                         .type(type)
                         .build();

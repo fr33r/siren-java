@@ -7,7 +7,7 @@ import siren.Field;
  * @author jonfreer
  * @since 8/19/17
  */
-public class FieldBuilderFactory implements BuilderFactory<Field.Builder> {
+public class FieldBuilderFactory<T> implements BuilderFactory<Field.Builder<T>> {
 
     /**
      * Constructs an instance of {@link FieldBuilderFactory}.
@@ -20,7 +20,7 @@ public class FieldBuilderFactory implements BuilderFactory<Field.Builder> {
      * @return An instance of {@link Field.Builder}.
      */
     @Override
-    public Field.Builder create() {
-        return new Field.Builder();
+    public Field.Builder<T> create() {
+        return new Field.Builder<>();
     }
 }
