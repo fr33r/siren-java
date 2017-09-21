@@ -255,10 +255,6 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          * @param rels The relationships of the sub-entity to its parent, per Web Linking (RFC5899).
          * @return The builder this method is called on.
          *
-         * @throws URISyntaxException Thrown if the textual representation of the relation
-         * is not a registered relation, and is not a valid URI. All extension relations must
-         * be in the form of a URI.
-         *
          * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
          */
         public Builder rels(URI... rels){
@@ -272,10 +268,6 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          * Adds the relations provided to the current state of the builder.
          * @param rels The relationships of the sub-entity to its parent, per Web Linking (RFC5899).
          * @return The builder this method is called on.
-         *
-         * @throws URISyntaxException Thrown if the textual representation of the relation
-         * is not a registered relation, and is not a valid URI. All extension relations must
-         * be in the form of a URI.
          *
          * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
          */
