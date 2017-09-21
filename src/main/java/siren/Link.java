@@ -34,14 +34,16 @@ public class Link {
          * Adds the relation provided to the current state of the builder.
          * @param rel Defines the relationship of the link to its
          *            entity, per Web Linking (RFC5988) and Link Relations.
-         * @see <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a>
-         * @see <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">
-         *      Link Relations
-         *     </a>
          * @return The builder this method is called on.
+         *
          * @throws URISyntaxException Thrown if the textual representation of the relation
          * is not a registered relation, and is not a valid URI. All extension relations must
          * be in the form of a URI.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a>
+         * @see <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">
+         *          Link Relations
+         *      </a>
          */
         public Builder rel(String rel) throws URISyntaxException {
             if(rel == null){
@@ -54,11 +56,12 @@ public class Link {
          * Adds the relation provided to the current state of the builder.
          * @param rel Defines the relationship of the link to its
          *            entity, per Web Linking (RFC5988) and Link Relations.
+         * @return The builder this method is called on.
+         *
          * @see <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a>
          * @see <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">
-         *      Link Relations
-         *     </a>
-         * @return The builder this method is called on.
+         *          Link Relations
+         *      </a>
          */
         public Builder rel(URI rel) {
             if(rel == null){
@@ -70,12 +73,13 @@ public class Link {
         /**
          * Adds the relation provided to the current state of the builder.
          * @param rel Defines the relationship of the link to its
-         *            entity, per Web Linking (RFC5988) and Link Relations.
+         *            entity, per Web Linking (RFC5988) and Link Relations
+         * @return The builder this method is called on.
+         *
          * @see <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a>
          * @see <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">
-         *      Link Relations
-         *     </a>
-         * @return The builder this method is called on.
+         *          Link Relations
+         *      </a>
          */
         public Builder rel(Relation rel) {
             if(rel == null){
@@ -85,6 +89,64 @@ public class Link {
                 this.rel = new ArrayList<>();
             }
             this.rel.add(rel);
+            return this;
+        }
+
+        /**
+         * Adds the relations provided to the current state of the builder.
+         * @param rels Defines the relationships of the link to its
+         *             entity, per Web Linking (RFC5988) and Link Relations.
+         * @return The builder this method is called on.
+         *
+         * @throws URISyntaxException Thrown if the textual representation of the relation
+         * is not a registered relation, and is not a valid URI. All extension relations must
+         * be in the form of a URI.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a>
+         * @see <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">
+         *          Link Relations
+         *      </a>
+         */
+        public Builder rels(String... rels) throws URISyntaxException {
+            for(String rel : rels){
+                this.rel(rel);
+            }
+            return this;
+        }
+
+        /**
+         * Adds the relations provided to the current state of the builder.
+         * @param rels Defines the relationships of the link to its
+         *             entity, per Web Linking (RFC5988) and Link Relations.
+         * @return The builder this method is called on.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a>
+         * @see <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">
+         *          Link Relations
+         *      </a>
+         */
+        public Builder rels(URI... rels){
+            for(URI rel : rels){
+                this.rel(rel);
+            }
+            return this;
+        }
+
+        /**
+         * Adds the relations provided to the current state of the builder.
+         * @param rels Defines the relationships of the link to its
+         *             entity, per Web Linking (RFC5988) and Link Relations.
+         * @return The builder this method is called on.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5988">RFC5988</a>
+         * @see <a href="http://www.iana.org/assignments/link-relations/link-relations.xhtml">
+         *          Link Relations
+         *      </a>
+         */
+        public Builder rels(Relation... rels){
+            for(Relation rel : rels) {
+                this.rel(rel);
+            }
             return this;
         }
 
@@ -116,6 +178,20 @@ public class Link {
                 this.klass = new ArrayList<>();
             }
             this.klass.add(klass);
+            return this;
+        }
+
+        /**
+         * Adds the classes provided to the current state of the builder.
+         * @param klasses Describes aspects of the link based on the current
+         *                representation. Possible values are implementation-dependent
+         *                and should be documented.
+         * @return The builder this method is called on.
+         */
+        public Builder klasses(String... klasses){
+            for(String klass : klasses){
+                this.klass(klass);
+            }
             return this;
         }
 
@@ -165,7 +241,6 @@ public class Link {
          */
         @Override
         public Link build() {
-            // TODO 2017-08-15 - FREER - Do some checking that required state has been set.
             return new Link(this.rel, this.href, this.title, this.type, this.klass);
         }
     }

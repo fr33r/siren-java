@@ -21,7 +21,7 @@ public class EmbeddedRepresentationSubEntityTester {
     @Before
     public void setup(){
         this.embeddedRepSubEntityBuilder =
-                new EmbeddedRepresentationSubEntity.Builder();
+            new EmbeddedRepresentationSubEntity.Builder();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -35,6 +35,36 @@ public class EmbeddedRepresentationSubEntityTester {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void rel_nullRelAsString_outcomeIs_IllegalArgumentException() throws URISyntaxException {
+
+        //arrange.
+        final String rel = null;
+
+        //action.
+        this.embeddedRepSubEntityBuilder.rel(rel).build();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void rel_nullRelAsURI_outcomeIs_IllegalArgumentException() throws URISyntaxException {
+
+        //arrange.
+        final URI rel = null;
+
+        //action.
+        this.embeddedRepSubEntityBuilder.rel(rel).build();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void rel_nullRelAsRelation_outcomeIs_IllegalArgumentException() throws URISyntaxException {
+
+        //arrange.
+        final Relation rel = null;
+
+        //action.
+        this.embeddedRepSubEntityBuilder.rel(rel).build();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void property_nullPropertyKey_outcomeIs_IllegalArgumentException() {
 
         //arrange.
@@ -43,7 +73,7 @@ public class EmbeddedRepresentationSubEntityTester {
 
         //action.
         this.embeddedRepSubEntityBuilder
-                .property(propertyKey, propertyValue);
+            .property(propertyKey, propertyValue);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -86,10 +116,10 @@ public class EmbeddedRepresentationSubEntityTester {
 
         //action.
         Entity actualEntity =
-                this.embeddedRepSubEntityBuilder
-                        .rel(rel)
-                        .property(propertyKey, propertyValue)
-                        .build();
+            this.embeddedRepSubEntityBuilder
+                .rel(rel)
+                .property(propertyKey, propertyValue)
+                .build();
 
         //assert.
         Assert.assertEquals(propertyValue, actualEntity.getProperties().get(propertyKey));
@@ -101,20 +131,34 @@ public class EmbeddedRepresentationSubEntityTester {
         //arrange.
         final Action.Builder actionBuilder = new Action.Builder();
         final String rel = "testRel";
-        Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+        final String actionName1 = "actionName";
+        final String actionName2 = "otherActionName";
+        final URI actionHref1 = new URI("http://www.example.com/someaction");
+        final URI actionHref2 = new URI("http://www.example.com/otheraction");
+
+        Action action1 = actionBuilder
+            .name(actionName1)
+            .href(actionHref1)
+            .build();
+
+        actionBuilder.clear();
+
+        Action action2 = actionBuilder
+            .name(actionName2)
+            .href(actionHref2)
+            .build();
 
         //action.
         Entity actualEntity =
-                this.embeddedRepSubEntityBuilder
-                        .rel(rel)
-                        .action(action)
-                        .build();
+            this.embeddedRepSubEntityBuilder
+                .rel(rel)
+                .actions(action1, action2)
+                .build();
 
         //assert.
-        Assert.assertEquals(action, actualEntity.getActions().get(0));
+        Assert.assertEquals(action1, actualEntity.getActions().get(0));
+        Assert.assertEquals(action2, actualEntity.getActions().get(1));
+
     }
 
     @Test
@@ -122,22 +166,35 @@ public class EmbeddedRepresentationSubEntityTester {
 
         //arrange.
         final Link.Builder linkBuilder = new Link.Builder();
-        final String rel = "testRel";
-        Link link =
-                linkBuilder
-                        .rel("testRel")
-                        .href(new URI("http://www.example.com"))
-                        .build();
+        final String rel1 = "testRel";
+        final String rel2 = "testRel2";
+        final String rel3 = "testRel2=3";
+        final URI href = new URI("http://www.example.com");
+
+        Link link1 =
+            linkBuilder
+                .rel(rel1)
+                .href(href)
+                .build();
+
+        linkBuilder.clear();
+
+        Link link2 =
+            linkBuilder
+                .rel(rel2)
+                .href(href)
+                .build();
 
         //action.
         Entity actualEntity =
-                this.embeddedRepSubEntityBuilder
-                        .rel(rel)
-                        .link(link)
-                        .build();
+            this.embeddedRepSubEntityBuilder
+                .rel(rel3)
+                .links(link1, link2)
+                .build();
 
         //assert.
-        Assert.assertEquals(link, actualEntity.getLinks().get(0));
+        Assert.assertEquals(link1, actualEntity.getLinks().get(0));
+        Assert.assertEquals(link2, actualEntity.getLinks().get(1));
     }
 
     @Test
@@ -145,51 +202,73 @@ public class EmbeddedRepresentationSubEntityTester {
 
         //arrange.
         final EmbeddedLinkSubEntity.Builder subEntityBuilder =
-                new EmbeddedLinkSubEntity.Builder();
-        final String rel = "testRel";
-        EmbeddedLinkSubEntity subEntity =
-                subEntityBuilder
-                        .rel("testRel")
-                        .href(new URI("http://www.example.com"))
-                        .build();
+            new EmbeddedLinkSubEntity.Builder();
+        final String rel1 = "testRel1";
+        final String rel2 = "testRel2";
+        final String rel3 = "testRel3";
+        final String rel4 = "testRel4";
+        final URI href = new URI("http://www.example.com");
+
+        EmbeddedLinkSubEntity subEntity1 =
+            subEntityBuilder
+                .rel(rel1)
+                .href(href)
+                .build();
+
+        subEntityBuilder.clear();
+
+        EmbeddedLinkSubEntity subEntity2 =
+            subEntityBuilder
+                .rel(rel2)
+                .href(href)
+                .build();
 
         //action.
         Entity actualEntity =
-                this.embeddedRepSubEntityBuilder
-                        .rel(rel)
-                        .subEntity(subEntity)
-                        .build();
+            this.embeddedRepSubEntityBuilder
+                .rels(rel3, rel4)
+                .subEntities(subEntity1, subEntity2)
+                .build();
 
         //assert.
-        Assert.assertEquals(subEntity, actualEntity.getEntities().get(0));
+        Assert.assertEquals(subEntity1, actualEntity.getEntities().get(0));
+        Assert.assertEquals(subEntity2, actualEntity.getEntities().get(1));
+
     }
 
     @Test
     public void equals_instancesAreEqual_outcomeIs_true() throws URISyntaxException {
 
         //arrange.
-        final String rel = "testRel";
+        final String rel1 = "testRel";
+        final String rel2 = "testRel2";
+        final Relation relation1 = new Relation(rel1);
+        final Relation relation2 = new Relation(rel2);
+        final String klass1 = "testKlass1";
+        final String klass2 = "testKlass2";
+        final String title = "testTitle";
+
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
 
         Entity entity1 = this.embeddedRepSubEntityBuilder
-                .rel(rel)
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .rels(relation1, relation2)
+            .klasses(klass1, klass2)
+            .title(title)
+            .action(action)
+            .build();
 
         this.embeddedRepSubEntityBuilder.clear();
 
         Entity entity2 = this.embeddedRepSubEntityBuilder
-                .rel(rel)
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .rels(relation1, relation2)
+            .klasses(klass1, klass2)
+            .title(title)
+            .action(action)
+            .build();
 
         //action.
         boolean areEqual = entity1.equals(entity2);
@@ -205,16 +284,16 @@ public class EmbeddedRepresentationSubEntityTester {
         final String rel = "testRel";
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
 
         Entity entity1 = this.embeddedRepSubEntityBuilder
-                .rel(rel)
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .rel(rel)
+            .klass("testClass")
+            .title("testTitle")
+            .action(action)
+            .build();
 
         this.embeddedRepSubEntityBuilder.clear();
 
@@ -234,16 +313,16 @@ public class EmbeddedRepresentationSubEntityTester {
         final String rel = "testRel";
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
 
         Entity entity1 = this.embeddedRepSubEntityBuilder
-                .rel(rel)
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .rel(rel)
+            .klass("testClass")
+            .title("testTitle")
+            .action(action)
+            .build();
 
         this.embeddedRepSubEntityBuilder.clear();
 
@@ -261,27 +340,32 @@ public class EmbeddedRepresentationSubEntityTester {
 
         //arrange.
         final String rel = "testRel";
+        final String actionName = "actionName";
+        final URI href = new URI("http://www.example.com/someaction");
+        final String klass = "testClass";
+        final String title = "testTitle";
+
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name(actionName)
+            .href(href)
+            .build();
 
         Entity entity1 = this.embeddedRepSubEntityBuilder
-                .rel(rel)
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .rel(rel)
+            .klass(klass)
+            .title(title)
+            .action(action)
+            .build();
 
         this.embeddedRepSubEntityBuilder.clear();
 
         Entity entity2 = this.embeddedRepSubEntityBuilder
-                .rel(rel)
-                .klass("testClassThatIsDifferent") //different class.
-                .title("testTitle")
-                .action(action)
-                .build();
+            .rel(rel)
+            .klass("testClassThatIsDifferent") //different class.
+            .title(title)
+            .action(action)
+            .build();
 
         //action.
         boolean areEqual = entity1.equals(entity2);
@@ -296,19 +380,21 @@ public class EmbeddedRepresentationSubEntityTester {
         //arrange.
         final int PRIME = 31;
         int expectedHashCode = 1;
-        final String rel = "testRel";
+        final URI rel1 = new URI("http://www.example.com/relation1");
+        final URI rel2 = new URI("http://www.example.com/relation2");
+
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
         EmbeddedRepresentationSubEntity embeddedRepresentationSubEntity =
-                this.embeddedRepSubEntityBuilder
-                    .rel(rel)
-                    .klass("testClass")
-                    .title("testTitle")
-                    .action(action)
-                    .build();
+            this.embeddedRepSubEntityBuilder
+                .rels(rel1, rel2)
+                .klass("testClass")
+                .title("testTitle")
+                .action(action)
+                .build();
 
         expectedHashCode *= PRIME + embeddedRepresentationSubEntity.getTitle().hashCode();
         expectedHashCode *= PRIME + embeddedRepresentationSubEntity.getKlass().hashCode();

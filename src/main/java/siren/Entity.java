@@ -43,6 +43,19 @@ public class Entity extends EntityBase{
         }
 
         /**
+         * Adds the classes provided to the current state of the builder.
+         * @param klasses Descriptions of the nature of an entity's content based on the current representation.
+         *                Possible values are implementation-dependent and should be documented.
+         * @return The builder this method is called on.
+         */
+        public Builder klasses(String... klasses){
+            for(String klass : klasses){
+                this.klass(klass);
+            }
+            return this;
+        }
+
+        /**
          * Adds the property provided to the current state of the builder.
          * @param propertyKey The key portion of a key-value pair that describes the state of an entity.
          * @param propertyValue The value portion of a key-value pair that describes the state of an entity.
@@ -77,6 +90,18 @@ public class Entity extends EntityBase{
         }
 
         /**
+         * Adds the actions provided to the current state of the builder.
+         * @param actions Actions showing available behaviors an entity exposes.
+         * @return The builder this method is called on.
+         */
+        public Builder actions(Action... actions){
+            for(Action action: actions){
+                this.action(action);
+            }
+            return this;
+        }
+
+        /**
          * Adds the link provided to the current state of the builder.
          * @param link A navigational link, distinct from an entity relationship.
          *             Link items should contain a `rel` attribute to describe the relationship
@@ -96,6 +121,21 @@ public class Entity extends EntityBase{
         }
 
         /**
+         * Adds the links provided to the current state of the builder.
+         * @param links Navigational links, distinct from entity relationships.
+         *             Link items should contain a `rel` attribute to describe the relationship
+         *             and an `href` attribute to point to the target URI.
+         *             Entities should include a link `rel` to `self`.
+         * @return The builder this method is called on.
+         */
+        public Builder links(Link... links){
+            for(Link link : links){
+                this.link(link);
+            }
+            return this;
+        }
+
+        /**
          * Adds the sub-entity provided to the current state of the builder.
          * @param subEntity A sub-entity represented as an embedded link or an embedded entity representation.
          * @return The builder this method is called on.
@@ -108,6 +148,19 @@ public class Entity extends EntityBase{
                 this.subEntities = new ArrayList<>();
             }
             this.subEntities.add(subEntity);
+            return this;
+        }
+
+        /**
+         * Adds the sub-entities provided to the current state of the builder.
+         * @param subEntities Sub-entities represented individually as an embedded link
+         *                    or an embedded entity representation.
+         * @return The builder this method is called on.
+         */
+        public Builder subEntities(EntityBase... subEntities){
+            for(EntityBase subEntity : subEntities){
+                this.subEntity(subEntity);
+            }
             return this;
         }
 
