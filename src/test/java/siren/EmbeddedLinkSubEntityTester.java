@@ -26,10 +26,30 @@ public class EmbeddedLinkSubEntityTester {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void rel_nullRel_outcomeIs_IllegalArgumentException() throws URISyntaxException {
+    public void rel_nullRelAsString_outcomeIs_IllegalArgumentException() throws URISyntaxException {
 
         //arrange.
         final String rel = null;
+
+        //action.
+        this.embeddedLinkSubEntityBuilder.rel(rel).build();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void rel_nullRelAsURI_outcomeIs_IllegalArgumentException() throws URISyntaxException {
+
+        //arrange.
+        final URI rel = null;
+
+        //action.
+        this.embeddedLinkSubEntityBuilder.rel(rel).build();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void rel_nullRelAsRelation_outcomeIs_IllegalArgumentException() throws URISyntaxException {
+
+        //arrange.
+        final Relation rel = null;
 
         //action.
         this.embeddedLinkSubEntityBuilder.rel(rel).build();
@@ -44,6 +64,16 @@ public class EmbeddedLinkSubEntityTester {
 
         //action.
         this.embeddedLinkSubEntityBuilder.rel(rel).href(href).build();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void klass_nullKlass_outcomeIs_IllegalArgumentException() throws URISyntaxException {
+
+        //arrange.
+        final String klass = null;
+
+        //action.
+        this.embeddedLinkSubEntityBuilder.klass(klass);
     }
 
     @Test
@@ -69,17 +99,18 @@ public class EmbeddedLinkSubEntityTester {
 
         //arrange.
         final URI href = new URI("https://www.example.com/");
-        final String rel = "testRel";
-        final List<Relation> rels =
-                new ArrayList<>();
-        rels.add(new Relation(rel));
+        final URI rel1 = new URI("https://www.examples.com/relation");
+        final URI rel2 = new URI("https://www.examples.com/anotherRelation");
+        final List<Relation> rels = new ArrayList<>();
+        rels.add(new Relation(rel1));
+        rels.add(new Relation(rel2));
 
         //action.
         EmbeddedLinkSubEntity actualEntity =
-                this.embeddedLinkSubEntityBuilder
-                        .rel(rel)
-                        .href(href)
-                        .build();
+            this.embeddedLinkSubEntityBuilder
+                .rels(rel1, rel2)
+                .href(href)
+                .build();
 
         //assert.
         Assert.assertEquals(rels, actualEntity.getRel());
@@ -112,15 +143,19 @@ public class EmbeddedLinkSubEntityTester {
         final URI href = new URI("https://www.example.com/");
         final String rel = "testRel";
         final String anotherRel = "anotherRel";
+        final Relation relation = new Relation(rel);
+        final Relation anotherRelation = new Relation(anotherRel);
         final String type = "testType";
+        final String klass = "testClass";
+        final String anotherKlass = "anotherClass";
+        final String title = "testTitle";
 
         EmbeddedLinkSubEntity entity1 =
             this.embeddedLinkSubEntityBuilder
-                .klass("testClass")
-                .title("testTitle")
+                .klasses(klass, anotherKlass)
+                .title(title)
                 .href(href)
-                .rel(rel)
-                .rel(anotherRel)
+                .rels(rel, anotherRel)
                 .type(type)
                 .build();
 
@@ -128,11 +163,10 @@ public class EmbeddedLinkSubEntityTester {
 
         EmbeddedLinkSubEntity entity2 =
             this.embeddedLinkSubEntityBuilder
-                .klass("testClass")
-                .title("testTitle")
+                .klasses(klass, anotherKlass)
+                .title(title)
                 .href(href)
-                .rel(rel)
-                .rel(anotherRel)
+                .rels(relation, anotherRelation)
                 .type(type)
                 .build();
 

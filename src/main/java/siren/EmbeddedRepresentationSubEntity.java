@@ -51,6 +51,19 @@ public class EmbeddedRepresentationSubEntity extends Entity {
         }
 
         /**
+         * Adds the classes provided to the current state of the builder.
+         * @param klasses Descriptions of the nature of an entity's content based on the current representation.
+         *                Possible values are implementation-dependent and should be documented.
+         * @return The builder this method is called on.
+         */
+        public Builder klasses(String... klasses){
+            for(String klass : klasses){
+                this.klass(klass);
+            }
+            return this;
+        }
+
+        /**
          * Adds the property provided to the current state of the builder.
          * @param propertyKey The key portion of a key-value pair that describes the state of an entity.
          * @param propertyValue The value portion of a key-value pair that describes the state of an entity.
@@ -85,6 +98,18 @@ public class EmbeddedRepresentationSubEntity extends Entity {
         }
 
         /**
+         * Adds the actions provided to the current state of the builder.
+         * @param actions Actions showing an available behavior an entity exposes.
+         * @return The builder this method is called on.
+         */
+        public Builder actions(Action... actions){
+            for(Action action : actions){
+                this.action(action);
+            }
+            return this;
+        }
+
+        /**
          * Adds the link provided to the current state of the builder.
          * @param link A navigational link, distinct from an entity relationship.
          *             Link items should contain a `rel` attribute to describe the relationship
@@ -104,6 +129,21 @@ public class EmbeddedRepresentationSubEntity extends Entity {
         }
 
         /**
+         * Adds the links provided to the current state of the builder.
+         * @param links Navigational links, distinct from an entity relationship.
+         *              Link items should contain a `rel` attribute to describe the relationship
+         *              and an `href` attribute to point to the target URI.
+         *              Entities should include a link `rel` to `self`.
+         * @return The builder this method is called on.
+         */
+        public Builder links(Link... links){
+            for(Link link : links){
+                this.link(link);
+            }
+            return this;
+        }
+
+        /**
          * Adds the sub-entity provided to the current state of the builder.
          * @param subEntity A sub-entity represented as an embedded link or an embedded entity representation.
          * @return The builder this method is called on.
@@ -116,6 +156,19 @@ public class EmbeddedRepresentationSubEntity extends Entity {
                 this.subEntities = new ArrayList<>();
             }
             this.subEntities.add(subEntity);
+            return this;
+        }
+
+        /**
+         * Adds the sub-entities provided to the current state of the builder.
+         * @param subEntities Sub-entities represented individually as an embedded link or
+         *                    an embedded entity representation.
+         * @return The builder this method is called on.
+         */
+        public Builder subEntities(EntityBase... subEntities){
+            for(EntityBase subEntity : subEntities){
+                this.subEntity(subEntity);
+            }
             return this;
         }
 
@@ -174,6 +227,60 @@ public class EmbeddedRepresentationSubEntity extends Entity {
                 this.rel = new ArrayList<>();
             }
             this.rel.add(rel);
+            return this;
+        }
+
+        /**
+         * Adds the relations provided to the current state of the builder.
+         * @param rels The relationships of the sub-entity to its parent, per Web Linking (RFC5899).
+         * @return The builder this method is called on.
+         *
+         * @throws URISyntaxException Thrown if the textual representation of the relation
+         * is not a registered relation, and is not a valid URI. All extension relations must
+         * be in the form of a URI.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
+         */
+        public Builder rels(String... rels) throws URISyntaxException {
+            for(String rel : rels){
+                this.rel(rel);
+            }
+            return this;
+        }
+
+        /**
+         * Adds the relations provided to the current state of the builder.
+         * @param rels The relationships of the sub-entity to its parent, per Web Linking (RFC5899).
+         * @return The builder this method is called on.
+         *
+         * @throws URISyntaxException Thrown if the textual representation of the relation
+         * is not a registered relation, and is not a valid URI. All extension relations must
+         * be in the form of a URI.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
+         */
+        public Builder rels(URI... rels){
+            for(URI rel : rels){
+                this.rel(rel);
+            }
+            return this;
+        }
+
+        /**
+         * Adds the relations provided to the current state of the builder.
+         * @param rels The relationships of the sub-entity to its parent, per Web Linking (RFC5899).
+         * @return The builder this method is called on.
+         *
+         * @throws URISyntaxException Thrown if the textual representation of the relation
+         * is not a registered relation, and is not a valid URI. All extension relations must
+         * be in the form of a URI.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
+         */
+        public Builder rels(Relation... rels){
+            for(Relation rel : rels){
+                this.rel(rel);
+            }
             return this;
         }
 

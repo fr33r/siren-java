@@ -90,10 +90,9 @@ public class EntityTester {
 
         //action.
         Entity actualEntity =
-                this.entityBuilder
-                        .klass(klass1)
-                        .klass(klass2)
-                        .build();
+            this.entityBuilder
+                .klasses(klass1, klass2)
+                .build();
 
         //assert.
         Assert.assertEquals(klass, actualEntity.getKlass());
@@ -146,10 +145,9 @@ public class EntityTester {
 
         //action.
         Entity actualEntity =
-                this.entityBuilder
-                        .action(action1)
-                        .action(action2)
-                        .build();
+            this.entityBuilder
+                .actions(action1, action2)
+                .build();
 
         //assert.
         Assert.assertEquals(actions, actualEntity.getActions());
@@ -180,10 +178,9 @@ public class EntityTester {
 
         //action.
         Entity actualEntity =
-                this.entityBuilder
-                        .link(link1)
-                        .link(link2)
-                        .build();
+            this.entityBuilder
+                .links(link1, link2)
+                .build();
 
         //assert.
         Assert.assertEquals(links, actualEntity.getLinks());
@@ -215,10 +212,9 @@ public class EntityTester {
 
         //action.
         Entity actualEntity =
-                this.entityBuilder
-                        .subEntity(subEntity1)
-                        .subEntity(subEntity2)
-                        .build();
+            this.entityBuilder
+                .subEntities(subEntity1, subEntity2)
+                .build();
 
         //assert.
         Assert.assertEquals(subEntities, actualEntity.getEntities());

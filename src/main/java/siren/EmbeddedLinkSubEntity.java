@@ -40,7 +40,20 @@ public class EmbeddedLinkSubEntity extends EntityBase {
             if(this.klass == null){
                 this.klass = new ArrayList<>();
             }
-            this.klass.add(className);
+            this.klass.add(klass);
+            return this;
+        }
+
+        /**
+         * Adds the classes provided to the current state of the builder.
+         * @param klasses Descriptions of the nature of an entity's content based on the current representation.
+         *                Possible values are implementation-dependent and should be documented.
+         * @return The builder this method is called on.
+         */
+        public Builder klasses(String... klasses){
+            for(String klass : klasses){
+                this.klass(klass);
+            }
             return this;
         }
 
@@ -99,6 +112,52 @@ public class EmbeddedLinkSubEntity extends EntityBase {
                 this.rel = new ArrayList<>();
             }
             this.rel.add(rel);
+            return this;
+        }
+
+        /**
+         * Adds the relations provided to the current state of the builder.
+         * @param rels The relationships of the sub-entity to its parent, per Web Linking (RFC5899).
+         * @return The builder this method is called on.
+         *
+         * @throws URISyntaxException Thrown if the textual representation of the relation
+         * is not a registered relation, and is not a valid URI. All extension relations must
+         * be in the form of a URI.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
+         */
+        public Builder rels(String... rels) throws URISyntaxException {
+            for(String rel : rels){
+                this.rel(rel);
+            }
+            return this;
+        }
+
+        /**
+         * Adds the relations provided to the current state of the builder.
+         * @param rels The relationships of the sub-entity to its parent, per Web Linking (RFC5899).
+         * @return The builder this method is called on.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
+         */
+        public Builder rels(URI... rels){
+            for(URI rel : rels){
+                this.rel(rel);
+            }
+            return this;
+        }
+
+        /**
+         * Adds the relations provided to the current state of the builder.
+         * @param rels The relationships of the sub-entity to its parent, per Web Linking (RFC5899).
+         * @return The builder this method is called on.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
+         */
+        public Builder rels(Relation... rels){
+            for(Relation rel : rels){
+                this.rel(rel);
+            }
             return this;
         }
 
