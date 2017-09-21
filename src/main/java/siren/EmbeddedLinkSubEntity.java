@@ -36,7 +36,10 @@ public class EmbeddedLinkSubEntity extends EntityBase {
          *              Possible values are implementation-dependent and should be documented.
          * @return The builder this method is called on.
          */
-        public Builder klass(String className){
+        public Builder klass(String klass){
+            if(klass == null){
+                throw new IllegalArgumentException("'klass' cannot be null.");
+            }
             if(this.klass == null){
                 this.klass = new ArrayList<>();
             }
