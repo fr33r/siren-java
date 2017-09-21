@@ -107,16 +107,16 @@ public class EntityTester {
         final String propertyKey2 = "key2";
         final String propertyValue2 = "value2";
         final Map<String, Object> properties =
-                new HashMap<String, Object>();
+            new HashMap<>();
         properties.put(propertyKey1, propertyValue1);
         properties.put(propertyKey2, propertyValue2);
 
         //action.
         Entity actualEntity =
-                this.entityBuilder
-                        .property(propertyKey1, propertyValue1)
-                        .property(propertyKey2, propertyValue2)
-                        .build();
+            this.entityBuilder
+                .property(propertyKey1, propertyValue1)
+                .property(propertyKey2, propertyValue2)
+                .build();
 
         //assert.
         Assert.assertEquals(properties, actualEntity.getProperties());
@@ -128,16 +128,16 @@ public class EntityTester {
         //arrange.
         final Action.Builder actionBuilder = new Action.Builder();
         Action action1 = actionBuilder
-                .name("actionName1")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName1")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
 
         actionBuilder.clear();
 
         Action action2 = actionBuilder
-                .name("actionName2")
-                .href(new URI("http://www.example.com/someotheraction"))
-                .build();
+            .name("actionName2")
+            .href(new URI("http://www.example.com/someotheraction"))
+            .build();
 
         List<Action> actions = new ArrayList<Action>();
         actions.add(action1);
@@ -159,18 +159,18 @@ public class EntityTester {
         //arrange.
         final Link.Builder linkBuilder = new Link.Builder();
         Link link1 =
-                linkBuilder
-                        .rel("testRel1")
-                        .href(new URI("http://www.example.com/something"))
-                        .build();
+            linkBuilder
+                .rel("testRel1")
+                .href(new URI("http://www.example.com/something"))
+                .build();
 
         linkBuilder.clear();
 
         Link link2 =
-                linkBuilder
-                        .rel("testRel2")
-                        .href(new URI("http://www.example.com/somethingelse"))
-                        .build();
+            linkBuilder
+                .rel("testRel2")
+                .href(new URI("http://www.example.com/somethingelse"))
+                .build();
 
         List<Link> links = new ArrayList<Link>();
         links.add(link1);
@@ -191,20 +191,20 @@ public class EntityTester {
 
         //arrange.
         final EmbeddedLinkSubEntity.Builder subEntityBuilder =
-                new EmbeddedLinkSubEntity.Builder();
+            new EmbeddedLinkSubEntity.Builder();
         EmbeddedLinkSubEntity subEntity1 =
-                subEntityBuilder
-                        .rel("testRel1")
-                        .href(new URI("http://www.example.com/something"))
-                        .build();
+            subEntityBuilder
+                .rel("testRel1")
+                .href(new URI("http://www.example.com/something"))
+                .build();
 
         subEntityBuilder.clear();
 
         EmbeddedLinkSubEntity subEntity2 =
-                subEntityBuilder
-                        .rel("testRel2")
-                        .href(new URI("http://www.example.com/somethingelse"))
-                        .build();
+            subEntityBuilder
+                .rel("testRel2")
+                .href(new URI("http://www.example.com/somethingelse"))
+                .build();
 
         List<EntityBase> subEntities = new ArrayList<EntityBase>();
         subEntities.add(subEntity1);
@@ -242,45 +242,45 @@ public class EntityTester {
         //arrange.
         final Link.Builder linkBuilder = new Link.Builder();
         final Link link = linkBuilder
-                .href(new URI("http://www.example.com/someaction"))
-                .rel("rel")
-                .title("title")
-                .build();
+            .href(new URI("http://www.example.com/someaction"))
+            .rel("rel")
+            .title("title")
+            .build();
         final String key = "key";
         final String value = "value";
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
         final EmbeddedLinkSubEntity.Builder embeddedLinkSubEntityBuilder =
-                new EmbeddedLinkSubEntity.Builder();
+            new EmbeddedLinkSubEntity.Builder();
         final EmbeddedLinkSubEntity embeddedLinkSubEntity =
-                embeddedLinkSubEntityBuilder
-                    .href(new URI("http://www.example.com/someaction"))
-                    .rel("somerel")
-                    .title("title")
-                    .build();
+            embeddedLinkSubEntityBuilder
+                .href(new URI("http://www.example.com/someaction"))
+                .rel("somerel")
+                .title("title")
+                .build();
 
         Entity entity1 = this.entityBuilder
-                .klass("testClass")
-                .title("testTitle")
-                .property(key, value)
-                .link(link)
-                .action(action)
-                .subEntity(embeddedLinkSubEntity)
-                .build();
+            .klass("testClass")
+            .title("testTitle")
+            .property(key, value)
+            .link(link)
+            .action(action)
+            .subEntity(embeddedLinkSubEntity)
+            .build();
 
         this.entityBuilder.clear();
 
         Entity entity2 = this.entityBuilder
-                .klass("testClass")
-                .title("testTitle")
-                .property(key, value)
-                .link(link)
-                .action(action)
-                .subEntity(embeddedLinkSubEntity)
-                .build();
+            .klass("testClass")
+            .title("testTitle")
+            .property(key, value)
+            .link(link)
+            .action(action)
+            .subEntity(embeddedLinkSubEntity)
+            .build();
 
         //action.
         boolean areEqual = entity1.equals(entity2);
@@ -295,15 +295,15 @@ public class EntityTester {
         //arrange.
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
 
         Entity entity1 = this.entityBuilder
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .klass("testClass")
+            .title("testTitle")
+            .action(action)
+            .build();
 
         this.entityBuilder.clear();
 
@@ -322,15 +322,15 @@ public class EntityTester {
         //arrange.
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
 
         Entity entity1 = this.entityBuilder
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .klass("testClass")
+            .title("testTitle")
+            .action(action)
+            .build();
 
         this.entityBuilder.clear();
 
@@ -349,23 +349,23 @@ public class EntityTester {
         //arrange.
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
 
         Entity entity1 = this.entityBuilder
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .klass("testClass")
+            .title("testTitle")
+            .action(action)
+            .build();
 
         this.entityBuilder.clear();
 
         Entity entity2 = this.entityBuilder
-                .klass("testClassThatIsDifferent") //different class.
-                .title("testTitle")
-                .action(action)
-                .build();
+            .klass("testClassThatIsDifferent") //different class.
+            .title("testTitle")
+            .action(action)
+            .build();
 
         //action.
         boolean areEqual = entity1.equals(entity2);
@@ -384,22 +384,22 @@ public class EntityTester {
         final String value = "value";
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
         final Link.Builder linkBuilder = new Link.Builder();
         final Link link = linkBuilder
-                .href(new URI("http://www.example.com/someotheraction"))
-                .rel("rel")
-                .title("title")
-                .build();
+            .href(new URI("http://www.example.com/someotheraction"))
+            .rel("rel")
+            .title("title")
+            .build();
         Entity entity = this.entityBuilder
-                .property(key, value)
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .link(link)
-                .build();
+            .property(key, value)
+            .klass("testClass")
+            .title("testTitle")
+            .action(action)
+            .link(link)
+            .build();
 
         expectedHashCode *= PRIME + entity.getTitle().hashCode();
         expectedHashCode *= PRIME + entity.getKlass().hashCode();

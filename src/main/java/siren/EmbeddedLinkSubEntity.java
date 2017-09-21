@@ -32,8 +32,8 @@ public class EmbeddedLinkSubEntity extends EntityBase {
 
         /**
          * Adds the class provided to the current state of the builder.
-         * @param className Describes the nature of an entity's content based on the current representation.
-         *                  Possible values are implementation-dependent and should be documented.
+         * @param klass Describes the nature of an entity's content based on the current representation.
+         *              Possible values are implementation-dependent and should be documented.
          * @return The builder this method is called on.
          */
         public Builder klass(String className){
@@ -202,7 +202,6 @@ public class EmbeddedLinkSubEntity extends EntityBase {
          */
         @Override
         public EmbeddedLinkSubEntity build() {
-            // TODO 2017-08-15 - FREER - Do some checking that required state has been set.
             return new EmbeddedLinkSubEntity(this.klass, this.title, this.rel, this.href, this.type);
         }
     }

@@ -83,8 +83,8 @@ public class LinkTester {
         final String rel2 = "relTest2";
         final Relation relation1 = new Relation(rel1);
         final Relation relation2 = new Relation(rel2);
-
         final URI href = new URI(uri);
+
         Link link =
             this.linkBuilder
                 .rels(relation1, relation2)
@@ -157,12 +157,13 @@ public class LinkTester {
         final String title = "titleTest";
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
+
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .title(title)
-                        .build();
+            this.linkBuilder
+                .rel("relTest")
+                .href(href)
+                .title(title)
+                .build();
 
         //action.
         String actualTitle = link.getTitle();
@@ -178,10 +179,10 @@ public class LinkTester {
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .build();
+            this.linkBuilder
+                .rel("relTest")
+                .href(href)
+                .build();
 
         //action.
         String actualTitle = link.getTitle();
@@ -198,11 +199,11 @@ public class LinkTester {
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .type(type)
-                        .build();
+            this.linkBuilder
+                .rel("relTest")
+                .href(href)
+                .type(type)
+                .build();
 
         //action.
         String actualType = link.getType();
@@ -218,10 +219,10 @@ public class LinkTester {
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .build();
+            this.linkBuilder
+                .rel("relTest")
+                .href(href)
+                .build();
 
         //action.
         String actualType = link.getType();
@@ -237,10 +238,10 @@ public class LinkTester {
         final String uri = "http://www.example.com/href";
         final URI href = new URI(uri);
         Link link =
-                this.linkBuilder
-                        .rel("relTest")
-                        .href(href)
-                        .build();
+            this.linkBuilder
+                .rel("relTest")
+                .href(href)
+                .build();
 
         //action.
         URI actualHref = link.getHref();

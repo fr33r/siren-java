@@ -21,7 +21,7 @@ public class EmbeddedRepresentationSubEntityTester {
     @Before
     public void setup(){
         this.embeddedRepSubEntityBuilder =
-                new EmbeddedRepresentationSubEntity.Builder();
+            new EmbeddedRepresentationSubEntity.Builder();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -73,7 +73,7 @@ public class EmbeddedRepresentationSubEntityTester {
 
         //action.
         this.embeddedRepSubEntityBuilder
-                .property(propertyKey, propertyValue);
+            .property(propertyKey, propertyValue);
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -116,10 +116,10 @@ public class EmbeddedRepresentationSubEntityTester {
 
         //action.
         Entity actualEntity =
-                this.embeddedRepSubEntityBuilder
-                        .rel(rel)
-                        .property(propertyKey, propertyValue)
-                        .build();
+            this.embeddedRepSubEntityBuilder
+                .rel(rel)
+                .property(propertyKey, propertyValue)
+                .build();
 
         //assert.
         Assert.assertEquals(propertyValue, actualEntity.getProperties().get(propertyKey));
@@ -284,16 +284,16 @@ public class EmbeddedRepresentationSubEntityTester {
         final String rel = "testRel";
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
 
         Entity entity1 = this.embeddedRepSubEntityBuilder
-                .rel(rel)
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .rel(rel)
+            .klass("testClass")
+            .title("testTitle")
+            .action(action)
+            .build();
 
         this.embeddedRepSubEntityBuilder.clear();
 
@@ -313,16 +313,16 @@ public class EmbeddedRepresentationSubEntityTester {
         final String rel = "testRel";
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name("actionName")
+            .href(new URI("http://www.example.com/someaction"))
+            .build();
 
         Entity entity1 = this.embeddedRepSubEntityBuilder
-                .rel(rel)
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .rel(rel)
+            .klass("testClass")
+            .title("testTitle")
+            .action(action)
+            .build();
 
         this.embeddedRepSubEntityBuilder.clear();
 
@@ -340,27 +340,32 @@ public class EmbeddedRepresentationSubEntityTester {
 
         //arrange.
         final String rel = "testRel";
+        final String actionName = "actionName";
+        final URI href = new URI("http://www.example.com/someaction");
+        final String klass = "testClass";
+        final String title = "testTitle";
+
         final Action.Builder actionBuilder = new Action.Builder();
         final Action action = actionBuilder
-                .name("actionName")
-                .href(new URI("http://www.example.com/someaction"))
-                .build();
+            .name(actionName)
+            .href(href)
+            .build();
 
         Entity entity1 = this.embeddedRepSubEntityBuilder
-                .rel(rel)
-                .klass("testClass")
-                .title("testTitle")
-                .action(action)
-                .build();
+            .rel(rel)
+            .klass(klass)
+            .title(title)
+            .action(action)
+            .build();
 
         this.embeddedRepSubEntityBuilder.clear();
 
         Entity entity2 = this.embeddedRepSubEntityBuilder
-                .rel(rel)
-                .klass("testClassThatIsDifferent") //different class.
-                .title("testTitle")
-                .action(action)
-                .build();
+            .rel(rel)
+            .klass("testClassThatIsDifferent") //different class.
+            .title(title)
+            .action(action)
+            .build();
 
         //action.
         boolean areEqual = entity1.equals(entity2);

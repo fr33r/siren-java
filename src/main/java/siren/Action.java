@@ -150,15 +150,14 @@ public class Action {
          */
         @Override
         public Action build() {
-            // TODO 2017-08-15 - FREER - Do some checking that required state has been set.
             return new Action(
-                    this.name,
-                    this.title,
-                    this.method,
-                    this.href,
-                    this.fields,
-                    this.type,
-                    this.klass
+                this.name,
+                this.title,
+                this.method,
+                this.href,
+                this.fields,
+                this.type,
+                this.klass
             );
         }
     }

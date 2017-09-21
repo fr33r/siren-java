@@ -36,7 +36,7 @@ public class EmbeddedRepresentationSubEntity extends Entity {
         /**
          * Adds the class provided to the current state of the builder.
          * @param klass Describes the nature of an entity's content based on the current representation.
-         *                  Possible values are implementation-dependent and should be documented.
+         *              Possible values are implementation-dependent and should be documented.
          * @return The builder this method is called on.
          */
         public Builder klass(String klass){
@@ -190,6 +190,8 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          * @throws URISyntaxException Thrown if the textual representation of the relation
          * is not a registered relation, and is not a valid URI. All extension relations must
          * be in the form of a URI.
+         *
+         * @see <a href="http://tools.ietf.org/html/rfc5899">RFC5899</a>
          */
         public Builder rel(String rel) throws URISyntaxException {
             if(rel == null){
@@ -306,15 +308,14 @@ public class EmbeddedRepresentationSubEntity extends Entity {
          */
         @Override
         public EmbeddedRepresentationSubEntity build() {
-            // TODO 2017-08-15 - FREER - Do some checking that required state has been set.
             return new EmbeddedRepresentationSubEntity(
-                    this.klass,
-                    this.properties,
-                    this.actions,
-                    this.links,
-                    this.title,
-                    this.rel,
-                    this.subEntities
+                this.klass,
+                this.properties,
+                this.actions,
+                this.links,
+                this.title,
+                this.rel,
+                this.subEntities
             );
         }
     }

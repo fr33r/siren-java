@@ -85,10 +85,10 @@ public class EmbeddedLinkSubEntityTester {
 
         //action.
         EmbeddedLinkSubEntity actualEntity =
-                this.embeddedLinkSubEntityBuilder
-                        .rel(rel)
-                        .href(href)
-                        .build();
+            this.embeddedLinkSubEntityBuilder
+                .rel(rel)
+                .href(href)
+                .build();
 
         //assert.
         Assert.assertEquals(href, actualEntity.getHref());
@@ -126,11 +126,11 @@ public class EmbeddedLinkSubEntityTester {
 
         //action.
         EmbeddedLinkSubEntity actualEntity =
-                this.embeddedLinkSubEntityBuilder
-                        .type(type)
-                        .rel(rel)
-                        .href(href)
-                        .build();
+            this.embeddedLinkSubEntityBuilder
+                .type(type)
+                .rel(rel)
+                .href(href)
+                .build();
 
         //assert.
         Assert.assertEquals(type, actualEntity.getType());
@@ -185,11 +185,11 @@ public class EmbeddedLinkSubEntityTester {
         final String rel = "testRel";
 
         EmbeddedLinkSubEntity entity1 = this.embeddedLinkSubEntityBuilder
-                .klass("testClass")
-                .title("testTitle")
-                .href(href)
-                .rel(rel)
-                .build();
+            .klass("testClass")
+            .title("testTitle")
+            .href(href)
+            .rel(rel)
+            .build();
 
         this.embeddedLinkSubEntityBuilder.clear();
 
@@ -210,11 +210,11 @@ public class EmbeddedLinkSubEntityTester {
         final String rel = "testRel";
 
         EmbeddedLinkSubEntity entity1 = this.embeddedLinkSubEntityBuilder
-                .klass("testClass")
-                .title("testTitle")
-                .href(href)
-                .rel(rel)
-                .build();
+            .klass("testClass")
+            .title("testTitle")
+            .href(href)
+            .rel(rel)
+            .build();
 
         this.embeddedLinkSubEntityBuilder.clear();
 
@@ -235,20 +235,20 @@ public class EmbeddedLinkSubEntityTester {
         final String rel = "testRel";
 
         EmbeddedLinkSubEntity entity1 = this.embeddedLinkSubEntityBuilder
-                .klass("testClass")
-                .title("testTitle")
-                .href(href)
-                .rel(rel)
-                .build();
+            .klass("testClass")
+            .title("testTitle")
+            .href(href)
+            .rel(rel)
+            .build();
 
         this.embeddedLinkSubEntityBuilder.clear();
 
         EmbeddedLinkSubEntity entity2 = this.embeddedLinkSubEntityBuilder
-                .klass("testClassThatIsDifferent") //different class.
-                .title("testTitle")
-                .href(href)
-                .rel(rel)
-                .build();
+            .klass("testClassThatIsDifferent") //different class.
+            .title("testTitle")
+            .href(href)
+            .rel(rel)
+            .build();
 
         //action.
         boolean areEqual = entity1.equals(entity2);
